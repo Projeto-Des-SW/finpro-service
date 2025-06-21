@@ -7,9 +7,9 @@ public class UserMapper {
 
     public static User toEntity(UserDTO dto) {
         if (dto == null) return null;
-        User user = new User();
-        user.setName(dto.getName());
-        user.setEmail(dto.getEmail());
-        return user;
+        return User.builder()
+                .email(dto.getEmail())
+                .name(dto.getName())
+                .build();
     }
 }

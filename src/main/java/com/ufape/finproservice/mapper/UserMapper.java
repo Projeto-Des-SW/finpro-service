@@ -10,6 +10,7 @@ public class UserMapper {
         return User.builder()
                 .email(dto.getEmail())
                 .name(dto.getName())
+                .password(dto.getPassword())
                 .build();
     }
 }

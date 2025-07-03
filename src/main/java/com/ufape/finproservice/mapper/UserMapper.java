@@ -1,6 +1,7 @@
 package com.ufape.finproservice.mapper;
 
 import com.ufape.finproservice.dto.UserDTO;
+import com.ufape.finproservice.dto.UserResponseDTO;
 import com.ufape.finproservice.model.User;
 
 public class UserMapper {
@@ -11,6 +12,14 @@ public class UserMapper {
                 .email(dto.getEmail())
                 .name(dto.getName())
                 .password(dto.getPassword())
+                .build();
+    }
+
+    public static UserResponseDTO toUserResponseDTO(User user) {
+        if (user == null) return null;
+        return UserResponseDTO.builder()
+                .email(user.getEmail())
+                .name(user.getName())
                 .build();
     }
 }

@@ -1,6 +1,8 @@
 package com.ufape.finproservice.service;
 
 import com.ufape.finproservice.dto.UserDTO;
+import com.ufape.finproservice.exception.CustomException;
+import com.ufape.finproservice.exception.ExceptionMessage;
 import com.ufape.finproservice.mapper.UserMapper;
 import com.ufape.finproservice.model.User;
 import com.ufape.finproservice.repository.UserRepository;
@@ -17,7 +19,7 @@ public class UserService {
 
     public User save(UserDTO userDTO) {
         if (userRepository.findByEmail(userDTO.getEmail()).isPresent()) {
-            throw new RuntimeException("E-mail já está em uso");
+            throw new CustomException(ExceptionMessage.EMAIL_ALREADY_EXISTS);
         }
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         User user = UserMapper.toEntity(userDTO);

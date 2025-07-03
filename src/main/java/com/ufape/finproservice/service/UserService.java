@@ -38,7 +38,7 @@ public class UserService {
             throw new CustomException(ExceptionMessage.AUTHENTICATION_FAILED);
         }
 
-        String token = jwtUtil.generateToken(user.getEmail());
+        String token = jwtUtil.generateToken(user.getEmail(), user.getRole().name());
         return new LoginResponseDTO(token, UserMapper.toUserResponseDTO(user));
     }
 }

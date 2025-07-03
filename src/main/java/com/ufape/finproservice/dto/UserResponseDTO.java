@@ -1,5 +1,6 @@
 package com.ufape.finproservice.dto;
 
+import com.ufape.finproservice.enumeration.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,4 +11,5 @@ import lombok.Data;
 public class UserResponseDTO {
     private String name;
     private String email;
+    private Role role;
 }

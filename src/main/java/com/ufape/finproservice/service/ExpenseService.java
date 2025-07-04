@@ -2,33 +2,33 @@ package com.ufape.finproservice.service;
 
 import com.ufape.finproservice.dto.ExpenseDTO;
 import com.ufape.finproservice.dto.ExpenseResponseDTO;
+import com.ufape.finproservice.exception.CustomException;
+import com.ufape.finproservice.exception.ExceptionMessage;
 import com.ufape.finproservice.mapper.ExpenseMapper;
 import com.ufape.finproservice.model.Expense;
 import com.ufape.finproservice.model.User;
 import com.ufape.finproservice.repository.ExpenseRepository;
 import com.ufape.finproservice.repository.UserRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /*import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;*/
-
+@AllArgsConstructor
 @Service
 public class ExpenseService {
 
-    @Autowired
     private ExpenseRepository expenseRepository;
 
-    @Autowired
     private UserRepository userRepository;
 
     @Transactional
     public ExpenseResponseDTO registerExpense(ExpenseDTO dto) {
         User user = userRepository.findById(dto.getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+                .orElseThrow(() -> new CustomException(ExceptionMessage.USER_NOT_FOUND));
 
         Expense expense = ExpenseMapper.toEntity(dto, user);
         Expense saved = expenseRepository.save(expense);

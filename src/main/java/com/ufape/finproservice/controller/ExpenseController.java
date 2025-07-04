@@ -4,8 +4,7 @@ import com.ufape.finproservice.dto.ExpenseDTO;
 import com.ufape.finproservice.dto.ExpenseResponseDTO;
 import com.ufape.finproservice.service.ExpenseService;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.beans.factory.annotation.Autowired;
-/*import org.springframework.format.annotation.DateTimeFormat;*/
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,9 +14,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/expense")
+@AllArgsConstructor
 public class ExpenseController {
 
-    @Autowired
     private ExpenseService expenseService;
 
     @PostMapping("/create")

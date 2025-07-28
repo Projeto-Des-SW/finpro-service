@@ -2,13 +2,13 @@ package com.ufape.finproservice.mapper;
 
 import com.ufape.finproservice.dto.UserDTO;
 import com.ufape.finproservice.dto.UserResponseDTO;
-import com.ufape.finproservice.model.User;
+import com.ufape.finproservice.model.UserEntity;
 
 public class UserMapper {
 
-    public static User toEntity(UserDTO dto) {
+    public static UserEntity toEntity(UserDTO dto) {
         if (dto == null) return null;
-        return User.builder()
+        return UserEntity.builder()
                 .email(dto.getEmail())
                 .name(dto.getName())
                 .password(dto.getPassword())
@@ -16,7 +16,7 @@ public class UserMapper {
                 .build();
     }
 
-    public static UserResponseDTO toUserResponseDTO(User user) {
+    public static UserResponseDTO toUserResponseDTO(UserEntity user) {
         if (user == null) return null;
         return UserResponseDTO.builder()
                 .email(user.getEmail())

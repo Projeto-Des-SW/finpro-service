@@ -3,11 +3,11 @@ package com.ufape.finproservice.mapper;
 import com.ufape.finproservice.dto.ExpenseDTO;
 import com.ufape.finproservice.dto.ExpenseResponseDTO;
 import com.ufape.finproservice.model.Expense;
-import com.ufape.finproservice.model.User;
+import com.ufape.finproservice.model.UserEntity;
 
 public class ExpenseMapper {
 
-    public static Expense toEntity(ExpenseDTO dto, User user) {
+    public static Expense toEntity(ExpenseDTO dto, UserEntity user) {
         if (dto == null) return null;
         return Expense.builder()
                 .expenseId(dto.getId())

@@ -6,7 +6,7 @@ import com.ufape.finproservice.exception.CustomException;
 import com.ufape.finproservice.exception.ExceptionMessage;
 import com.ufape.finproservice.mapper.ExpenseMapper;
 import com.ufape.finproservice.model.Expense;
-import com.ufape.finproservice.model.User;
+import com.ufape.finproservice.model.UserEntity;
 import com.ufape.finproservice.repository.ExpenseRepository;
 import com.ufape.finproservice.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -27,7 +27,7 @@ public class ExpenseService {
 
     @Transactional
     public ExpenseResponseDTO registerExpense(ExpenseDTO dto) {
-        User user = userRepository.findById(dto.getUserId())
+        UserEntity user = userRepository.findById(dto.getUserId())
                 .orElseThrow(() -> new CustomException(ExceptionMessage.USER_NOT_FOUND));
 
         Expense expense = ExpenseMapper.toEntity(dto, user);

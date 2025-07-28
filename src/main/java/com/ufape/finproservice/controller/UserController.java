@@ -3,7 +3,7 @@ package com.ufape.finproservice.controller;
 import com.ufape.finproservice.dto.LoginDTO;
 import com.ufape.finproservice.dto.LoginResponseDTO;
 import com.ufape.finproservice.dto.UserDTO;
-import com.ufape.finproservice.model.User;
+import com.ufape.finproservice.model.UserEntity;
 import com.ufape.finproservice.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
@@ -19,8 +19,8 @@ public class UserController {
 
     @PostMapping("/create")
     @Operation
-    public ResponseEntity<User> createUser(@RequestBody UserDTO userDTO) {
-        User savedUser = userService.save(userDTO);
+    public ResponseEntity<UserEntity> createUser(@RequestBody UserDTO userDTO) {
+        UserEntity savedUser = userService.save(userDTO);
         return ResponseEntity.ok(savedUser);
     }
 

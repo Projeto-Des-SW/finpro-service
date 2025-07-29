@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Entity
 @Table(name = "incomes")
@@ -15,8 +14,8 @@ import java.util.UUID;
 public class IncomeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID incomeId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long incomeId;
 
     @Column(nullable = false)
     private LocalDate date;

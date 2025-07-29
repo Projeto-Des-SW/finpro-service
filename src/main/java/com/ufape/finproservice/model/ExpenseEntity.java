@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Data
 @Builder
@@ -16,8 +15,8 @@ import java.util.UUID;
 public class ExpenseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID expenseId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long expenseId;
 
     @Column(nullable = false)
     private LocalDate date;

@@ -18,5 +18,5 @@ public class IncomeResponseDTO {
     private String paymentOrigin;
     private String balanceSource;
     private String observation;
-    private UserResponseDTO user; //ou private Long userId (apenas o ID)
+    private Long userId;
 }

@@ -7,11 +7,11 @@ import com.ufape.finproservice.model.UserEntity;
 
 public class ExpenseMapper {
 
-    public static ExpenseEntity toEntity(ExpenseDTO dto, UserEntity user) {
+    public static ExpenseEntity toEntity(ExpenseDTO dto, UserEntity user) { //ExpenseCategoryEntity category
         if (dto == null) return null;
         return ExpenseEntity.builder()
                 .expenseId(dto.getId())
-                .category(dto.getCategory())
+                //.category(category)
                 .amount(dto.getAmount())
                 .paymentDestination(dto.getPaymentDestination())
                 .balanceSource(dto.getBalanceSource())
@@ -25,7 +25,7 @@ public class ExpenseMapper {
         if (expense == null) return null;
         return ExpenseResponseDTO.builder()
                 .id(expense.getExpenseId())
-                .category(expense.getCategory())
+                //.category(expense.getCategory())
                 .amount(expense.getAmount())
                 .paymentDestination(expense.getPaymentDestination())
                 .balanceSource(expense.getBalanceSource())

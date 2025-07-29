@@ -1,11 +1,7 @@
 package com.ufape.finproservice.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -44,82 +40,4 @@ public class IncomeEntity {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
-
-    // Construtores
-    /*public IncomeEntity(String uuid, LocalDate date, IncomeCategoryEntity category, BigDecimal amount, 
-                      String paymentOrigin, String balanceSource, String ovbservation, UserEntity user) {
-        this.uuid = uuid;
-        this.date = date;
-        this.category = category;
-        this.amount = amount;
-        this.paymentOrigin = paymentOrigin;
-        this.balanceSource = balanceSource;
-        this.observation = observation;
-        this.user = user;
-    }*/
-
-    // Getters e Setters
-    public UUID getIncomeId() {
-        return incomeId;
-    }
-
-    public void setIncomeId(UUID incomeId) {
-        this.incomeId = incomeId;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    /*public IncomeCategoryEntity getCategory() {
-        return category;
-    }
-
-    public void setCategory(IncomeCategoryEntity category) {
-        this.category = category;
-    }*/
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public String getPaymentOrigin() {
-        return paymentOrigin;
-    }
-
-    public void setPaymentOrigin(String paymentOrigin) {
-        this.paymentOrigin = paymentOrigin;
-    }
-
-    public String getBalanceSource() {
-        return balanceSource;
-    }
-
-    public void setBalanceSource(String balanceSource) {
-        this.balanceSource = balanceSource;
-    }
-
-    public String getObservation() {
-        return observation;
-    }
-
-    public void setObservation(String observation) {
-        this.observation = observation;
-    }
-
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
-        this.user = user;
-    }
 }

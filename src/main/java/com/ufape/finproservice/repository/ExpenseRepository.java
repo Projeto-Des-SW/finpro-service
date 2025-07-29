@@ -1,15 +1,15 @@
 package com.ufape.finproservice.repository;
 
-import com.ufape.finproservice.model.Expense;
+import com.ufape.finproservice.model.ExpenseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface ExpenseRepository extends JpaRepository<Expense, Long> {
+public interface ExpenseRepository extends JpaRepository<ExpenseEntity, Long> {
 
     // Listar todas as despesas de um usuário
-    List<Expense> findByUserId(Long userId);
+    List<ExpenseEntity> findByUserId(Long userId);
 }
 

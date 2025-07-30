@@ -2,13 +2,9 @@ package com.ufape.finproservice.controller;
 
 import com.ufape.finproservice.dto.IncomeDTO;
 import com.ufape.finproservice.dto.IncomeResponseDTO;
-import com.ufape.finproservice.exception.CustomException;
 import com.ufape.finproservice.service.IncomeService;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +14,7 @@ import org.springframework.http.HttpStatus;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/incomes")
+@RequestMapping("/income")
 @AllArgsConstructor
 public class IncomeController {
 
@@ -43,7 +39,7 @@ public class IncomeController {
     @PutMapping("/{id}")
     public IncomeResponseDTO updateIncome(
             @PathVariable Long id,
-            @RequestBody IncomeDTO incomeDTO) {
+            @RequestBody @Valid IncomeDTO incomeDTO) {
         return incomeService.updateIncome(id, incomeDTO);
     }
 
@@ -58,18 +54,5 @@ public class IncomeController {
             @RequestParam @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$") String startDate,
             @RequestParam @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$") String endDate) {
         return incomeService.findIncomesByPeriod(startDate, endDate);
-    }
-
-    @ExceptionHandler(CustomException.class)
-    public ResponseEntity<ErrorResponse> handleCustomException(CustomException ex) {
-        return ResponseEntity
-                .status(ex.exceptionMessage.getCode())
-                .body(new ErrorResponse(ex.exceptionMessage.getDescription()));
-    }
-
-    @Data
-    @AllArgsConstructor
-    private static class ErrorResponse {
-        private String message;
     }
 }

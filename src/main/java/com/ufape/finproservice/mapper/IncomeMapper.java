@@ -2,15 +2,15 @@ package com.ufape.finproservice.mapper;
 
 import com.ufape.finproservice.dto.IncomeDTO;
 import com.ufape.finproservice.dto.IncomeResponseDTO;
-import com.ufape.finproservice.model.IncomeEntity;
+import com.ufape.finproservice.model.Income;
 import com.ufape.finproservice.model.UserEntity;
 
 public class IncomeMapper {
 
-    public static IncomeEntity toEntity(IncomeDTO dto, UserEntity user /*, IncomeCategoryEntity category*/) {
+    public static Income toEntity(IncomeDTO dto, UserEntity user /*, IncomeCategoryEntity category*/) {
         if (dto == null) return null;
         
-        return IncomeEntity.builder()
+        return Income.builder()
                 .date(dto.getDate())
                 .amount(dto.getAmount())
                 .paymentOrigin(dto.getPaymentOrigin())
@@ -21,7 +21,7 @@ public class IncomeMapper {
                 .build();
     }
 
-    public static IncomeResponseDTO toIncomeResponseDTO(IncomeEntity income) {
+    public static IncomeResponseDTO toIncomeResponseDTO(Income income) {
         if (income == null) return null;
         
         return IncomeResponseDTO.builder()

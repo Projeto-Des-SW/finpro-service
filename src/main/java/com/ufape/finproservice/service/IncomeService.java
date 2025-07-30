@@ -5,7 +5,7 @@ import com.ufape.finproservice.dto.IncomeResponseDTO;
 import com.ufape.finproservice.exception.CustomException;
 import com.ufape.finproservice.exception.ExceptionMessage;
 import com.ufape.finproservice.mapper.IncomeMapper;
-import com.ufape.finproservice.model.IncomeEntity;
+import com.ufape.finproservice.model.Income;
 import com.ufape.finproservice.model.UserEntity;
 import com.ufape.finproservice.repository.IncomeRepository;
 import com.ufape.finproservice.repository.UserRepository;
@@ -29,13 +29,13 @@ public class IncomeService {
     public IncomeResponseDTO createIncome(IncomeDTO incomeDTO) {
         UserEntity user = getCurrentUser();
         
-        IncomeEntity income = IncomeMapper.toEntity(incomeDTO, user);
-        IncomeEntity savedIncome = incomeRepository.save(income);
+        Income income = IncomeMapper.toEntity(incomeDTO, user);
+        Income savedIncome = incomeRepository.save(income);
         return IncomeMapper.toIncomeResponseDTO(savedIncome);
     }
 
     public IncomeResponseDTO findIncomeById(Long id) {
-        IncomeEntity income = incomeRepository.findById(id)
+        Income income = incomeRepository.findById(id)
                 .orElseThrow(() -> new CustomException(ExceptionMessage.INCOME_NOT_FOUND));
         
         validateUserOwnership(income);
@@ -60,7 +60,7 @@ public class IncomeService {
     }
 
     public IncomeResponseDTO updateIncome(Long id, IncomeDTO incomeDTO) {
-        IncomeEntity existingIncome = incomeRepository.findById(id)
+        Income existingIncome = incomeRepository.findById(id)
                 .orElseThrow(() -> new CustomException(ExceptionMessage.INCOME_NOT_FOUND));
         
         validateUserOwnership(existingIncome);
@@ -71,12 +71,12 @@ public class IncomeService {
         existingIncome.setBalanceSource(incomeDTO.getBalanceSource());
         existingIncome.setObservation(incomeDTO.getObservation());
         
-        IncomeEntity updatedIncome = incomeRepository.save(existingIncome);
+        Income updatedIncome = incomeRepository.save(existingIncome);
         return IncomeMapper.toIncomeResponseDTO(updatedIncome);
     }
 
     public void deleteIncome(Long id) {
-        IncomeEntity income = incomeRepository.findById(id)
+        Income income = incomeRepository.findById(id)
                 .orElseThrow(() -> new CustomException(ExceptionMessage.INCOME_NOT_FOUND));
         
         validateUserOwnership(income);
@@ -89,7 +89,7 @@ public class IncomeService {
                .orElseThrow(() -> new CustomException(ExceptionMessage.USER_NOT_FOUND));
     }
 
-    private void validateUserOwnership(IncomeEntity income) {
+    private void validateUserOwnership(Income income) {
         UserEntity currentUser = getCurrentUser();
         if (!income.getUser().getId().equals(currentUser.getId())) {
             throw new CustomException(ExceptionMessage.INCOME_NOT_OWNED);

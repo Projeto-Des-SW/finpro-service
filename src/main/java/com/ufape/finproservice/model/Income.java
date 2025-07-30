@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class IncomeEntity {
+public class Income {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,16 +2,15 @@ package com.ufape.finproservice.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "expense")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "expense")
 public class Expense {
 
     @Id

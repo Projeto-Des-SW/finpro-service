@@ -3,46 +3,56 @@ package com.ufape.finproservice.controller;
 import com.ufape.finproservice.dto.ExpenseDTO;
 import com.ufape.finproservice.dto.ExpenseResponseDTO;
 import com.ufape.finproservice.service.ExpenseService;
-import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-/*import java.math.BigDecimal;
-import java.time.LocalDate;*/
 import java.util.List;
+
+import org.springframework.http.HttpStatus;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/expense")
 @AllArgsConstructor
 public class ExpenseController {
 
-    private ExpenseService expenseService;
+    private final ExpenseService expenseService;
 
-    @PostMapping("/create")
-    @Operation
-    public ResponseEntity<ExpenseResponseDTO> createExpense(@RequestBody ExpenseDTO dto) {
-        ExpenseResponseDTO saved = expenseService.createExpense(dto);
-        return ResponseEntity.ok(saved);
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ExpenseResponseDTO createExpense(@RequestBody @Valid ExpenseDTO expenseDTO) {
+        return expenseService.createExpense(expenseDTO);
     }
-/*
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<ExpenseResponseDTO>> listByUser(@PathVariable Long userId) {
-        return ResponseEntity.ok(expenseService.listByUser(userId));
+
+    @GetMapping("/{id}")
+    public ExpenseResponseDTO getExpenseById(@PathVariable Long id) {
+        return expenseService.findExpenseById(id);
+    }
+
+    @GetMapping
+    public List<ExpenseResponseDTO> getAllUserExpenses() {
+        return expenseService.findAllUserExpenses();
+    }
+
+    @PutMapping("/{id}")
+    public ExpenseResponseDTO updateExpense(
+            @PathVariable Long id,
+            @RequestBody @Valid ExpenseDTO expenseDTO) {
+        return expenseService.updateExpense(id, expenseDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteExpense(@PathVariable Long id) {
+        expenseService.deleteExpense(id);
     }
 
     @GetMapping("/period")
-    public ResponseEntity<List<ExpenseResponseDTO>> listByPeriod(
-            @RequestParam Long userId,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end) {
-        return ResponseEntity.ok(expenseService.listByPeriod(userId, start, end));
+    public List<ExpenseResponseDTO> getExpensesByPeriod(
+            @RequestParam @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$") String startDate,
+            @RequestParam @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$") String endDate) {
+        return expenseService.findExpensesByPeriod(startDate, endDate);
     }
-
-    @GetMapping("/total")
-    public ResponseEntity<BigDecimal> calculateTotalByCategory(
-            @RequestParam Long userId,
-            @RequestParam String category) {
-        return ResponseEntity.ok(expenseService.calculateTotalByCategory(userId, category));
-    }*/
 }

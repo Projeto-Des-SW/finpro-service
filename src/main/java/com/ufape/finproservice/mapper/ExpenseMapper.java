@@ -25,7 +25,7 @@ public class ExpenseMapper {
         if (expense == null) return null;
 
         return ExpenseResponseDTO.builder()
-                .expenseid(expense.getExpenseId())
+                .expenseId(expense.getExpenseId())
                 .date(expense.getDate())
                 .amount(expense.getAmount())
                 .paymentDestination(expense.getPaymentDestination())

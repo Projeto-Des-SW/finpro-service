@@ -44,8 +44,8 @@ public class ExpenseService {
         public List<ExpenseResponseDTO> findAllUserExpenses() {
             UserEntity user = getCurrentUser();
             return expenseRepository.findByUserId(user.getId()).stream()
-                .map(ExpenseMapper::toExpenseResponseDTO)
-                .collect(Collectors.toList());
+                    .map(ExpenseMapper::toExpenseResponseDTO)
+                    .collect(Collectors.toList());
     }
 
         public List<ExpenseResponseDTO> findExpensesByPeriod(String startDateStr, String endDateStr) {

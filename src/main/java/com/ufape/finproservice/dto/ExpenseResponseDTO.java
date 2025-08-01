@@ -3,6 +3,7 @@ package com.ufape.finproservice.dto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -10,14 +11,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class ExpenseResponseDTO {
-    private Long id;
-    private String category;
+    private Long expenseid;
+    private LocalDate date;
+    //private ExpenseCategoryResponseDTO category;
     private BigDecimal amount;
     private String paymentDestination;
     private String balanceSource;
-    private LocalDate date;
     private String observation;
     private Long userId;
-    private String userName;
 }
 

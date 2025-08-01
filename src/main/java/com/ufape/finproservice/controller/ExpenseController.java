@@ -21,8 +21,8 @@ public class ExpenseController {
 
     @PostMapping("/create")
     @Operation
-    public ResponseEntity<ExpenseResponseDTO> registerExpense(@RequestBody ExpenseDTO dto) {
-        ExpenseResponseDTO saved = expenseService.registerExpense(dto);
+    public ResponseEntity<ExpenseResponseDTO> createExpense(@RequestBody ExpenseDTO dto) {
+        ExpenseResponseDTO saved = expenseService.createExpense(dto);
         return ResponseEntity.ok(saved);
     }
 /*

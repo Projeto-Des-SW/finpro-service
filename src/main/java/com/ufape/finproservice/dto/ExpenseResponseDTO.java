@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class ExpenseResponseDTO {
-    private Long expenseid;
+    private Long expenseId;
     private LocalDate date;
     //private ExpenseCategoryResponseDTO category;
     private BigDecimal amount;

@@ -12,6 +12,7 @@ import com.ufape.finproservice.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -23,12 +24,10 @@ public class ExpenseService {
 
     private final ExpenseRepository expenseRepository;
     private final UserRepository userRepository;
-
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public ExpenseResponseDTO createExpense(ExpenseDTO expenseDTO) {
         UserEntity user = getCurrentUser();
-
         Expense expense = ExpenseMapper.toEntity(expenseDTO, user);
         Expense savedExpense = expenseRepository.save(expense);
         return ExpenseMapper.toExpenseResponseDTO(savedExpense);
@@ -40,58 +39,59 @@ public class ExpenseService {
 
         validateUserOwnership(expense);
         return ExpenseMapper.toExpenseResponseDTO(expense);
-
-        public List<ExpenseResponseDTO> findAllUserExpenses() {
-            UserEntity user = getCurrentUser();
-            return expenseRepository.findByUserId(user.getId()).stream()
-                    .map(ExpenseMapper::toExpenseResponseDTO)
-                    .collect(Collectors.toList());
     }
 
-        public List<ExpenseResponseDTO> findExpensesByPeriod(String startDateStr, String endDateStr) {
-            UserEntity user = getCurrentUser();
-            LocalDate startDate = LocalDate.parse(startDateStr, dateFormatter);
-            LocalDate endDate = LocalDate.parse(endDateStr, dateFormatter);
+    public List<ExpenseResponseDTO> findAllUserExpenses() {
+        UserEntity user = getCurrentUser();
+        return expenseRepository.findByUserId(user.getId()).stream()
+                .map(ExpenseMapper::toExpenseResponseDTO)
+                .collect(Collectors.toList());
+    }
 
-            return expenseRepository.findByUserIdAndDateBetween(user.getId(), startDate, endDate).stream()
-                    .map(ExpenseMapper::toExpenseResponseDTO)
-                    .collect(Collectors.toList());
-        }
+    public List<ExpenseResponseDTO> findExpensesByPeriod(String startDateStr, String endDateStr) {
+        UserEntity user = getCurrentUser();
+        LocalDate startDate = LocalDate.parse(startDateStr, dateFormatter);
+        LocalDate endDate = LocalDate.parse(endDateStr, dateFormatter);
 
-        public ExpenseResponseDTO updateIncome(Long id, ExpenseDTO expenseDTO) {
-            Expense existingIncome = expenseRepository.findById(id)
-                    .orElseThrow(() -> new CustomException(ExceptionMessage.EXPENSE_NOT_FOUND));
+        return expenseRepository.findByUserIdAndDateBetween(user.getId(), startDate, endDate).stream()
+                .map(ExpenseMapper::toExpenseResponseDTO)
+                .collect(Collectors.toList());
+    }
 
-            validateUserOwnership(existingExpense);
+    public ExpenseResponseDTO updateExpense(Long id, ExpenseDTO expenseDTO) {
+        Expense existingExpense = expenseRepository.findById(id)
+                .orElseThrow(() -> new CustomException(ExceptionMessage.EXPENSE_NOT_FOUND));
 
-            existingExpense.setDate(expenseDTO.getDate());
-            existingExpense.setAmount(expenseDTO.getAmount());
-            existingExpense.setPaymentOrigin(expenseDTO.getPaymentOrigin());
-            existingExpense.setBalanceSource(expenseDTO.getBalanceSource());
-            existingExpense.setObservation(expenseDTO.getObservation());
+        validateUserOwnership(existingExpense);
 
-            Expense updatedExpense = expenseRepository.save(existingExpense);
-            return ExpenseMapper.toExpenseResponseDTO(updatedExpense);
-        }
+        existingExpense.setDate(expenseDTO.getDate());
+        existingExpense.setAmount(expenseDTO.getAmount());
+        existingExpense.setPaymentDestination(expenseDTO.getPaymentDestination());
+        existingExpense.setBalanceSource(expenseDTO.getBalanceSource());
+        existingExpense.setObservation(expenseDTO.getObservation());
 
-        public void deleteIncome(Long id) {
-            Expense expense = expenseRepository.findById(id)
-                    .orElseThrow(() -> new CustomException(ExceptionMessage.EXPENSE_NOT_FOUND));
+        Expense updatedExpense = expenseRepository.save(existingExpense);
+        return ExpenseMapper.toExpenseResponseDTO(updatedExpense);
+    }
 
-            validateUserOwnership(expense);
-            expenseRepository.delete(expense);
-        }
+    public void deleteExpense(Long id) {
+        Expense expense = expenseRepository.findById(id)
+                .orElseThrow(() -> new CustomException(ExceptionMessage.EXPENSE_NOT_FOUND));
 
-        private UserEntity getCurrentUser() {
-            String username = SecurityContextHolder.getContext().getAuthentication().getName();
-            return userRepository.findByEmail(username)
-                    .orElseThrow(() -> new CustomException(ExceptionMessage.USER_NOT_FOUND));
-        }
+        validateUserOwnership(expense);
+        expenseRepository.delete(expense);
+    }
 
-        private void validateUserOwnership(Expense expense) {
-            UserEntity currentUser = getCurrentUser();
-            if (!expense.getUser().getId().equals(currentUser.getId())) {
-                throw new CustomException(ExceptionMessage.EXPENSE_NOT_OWNED);
-            }
+    private UserEntity getCurrentUser() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByEmail(username)
+                .orElseThrow(() -> new CustomException(ExceptionMessage.USER_NOT_FOUND));
+    }
+
+    private void validateUserOwnership(Expense expense) {
+        UserEntity currentUser = getCurrentUser();
+        if (!expense.getUser().getId().equals(currentUser.getId())) {
+            throw new CustomException(ExceptionMessage.EXPENSE_NOT_OWNED);
         }
     }
+}

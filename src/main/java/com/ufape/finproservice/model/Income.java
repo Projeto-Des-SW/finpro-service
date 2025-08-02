@@ -21,7 +21,7 @@ public class Income {
     private LocalDate date;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "income_categories")
+    @JoinColumn(name = "income_category_id")
     private IncomeCategory category;
 
     @Column(nullable = false, precision = 19, scale = 4)

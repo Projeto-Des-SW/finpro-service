@@ -3,11 +3,12 @@ package com.ufape.finproservice.mapper;
 import com.ufape.finproservice.dto.IncomeDTO;
 import com.ufape.finproservice.dto.IncomeResponseDTO;
 import com.ufape.finproservice.model.Income;
+import com.ufape.finproservice.model.IncomeCategory;
 import com.ufape.finproservice.model.UserEntity;
 
 public class IncomeMapper {
 
-    public static Income toEntity(IncomeDTO dto, UserEntity user /*, IncomeCategoryEntity category*/) {
+    public static Income toEntity(IncomeDTO dto, UserEntity user , IncomeCategory category) {
         if (dto == null) return null;
         
         return Income.builder()
@@ -17,7 +18,7 @@ public class IncomeMapper {
                 .balanceSource(dto.getBalanceSource())
                 .observation(dto.getObservation())
                 .user(user)
-                //.category(category)
+                .category(category)
                 .build();
     }
 
@@ -32,8 +33,8 @@ public class IncomeMapper {
                 .balanceSource(income.getBalanceSource())
                 .observation(income.getObservation())
                 .userId(income.getUser().getId())
-                /*.category(income.getCategory() != null ? 
-                    IncomeCategoryMapper.toIncomeCategoryResponseDTO(income.getCategory()) : null)*/
+                .category(income.getCategory() != null ?
+                    IncomeCategoryMapper.toIncomeCategoryResponseDTO(income.getCategory()) : null)
                 .build();
     }
 }

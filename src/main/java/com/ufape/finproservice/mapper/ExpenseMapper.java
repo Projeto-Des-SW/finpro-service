@@ -9,29 +9,31 @@ public class ExpenseMapper {
 
     public static Expense toEntity(ExpenseDTO dto, UserEntity user) { //ExpenseCategoryEntity category
         if (dto == null) return null;
+
         return Expense.builder()
-                .expenseId(dto.getId())
-                //.category(category)
+                .date(dto.getDate())
                 .amount(dto.getAmount())
                 .paymentDestination(dto.getPaymentDestination())
                 .balanceSource(dto.getBalanceSource())
-                .date(dto.getDate())
                 .observation(dto.getObservation())
                 .user(user)
+                //.category(category)
                 .build();
     }
 
     public static ExpenseResponseDTO toExpenseResponseDTO(Expense expense) {
         if (expense == null) return null;
+
         return ExpenseResponseDTO.builder()
-                .id(expense.getExpenseId())
-                //.category(expense.getCategory())
+                .expenseId(expense.getExpenseId())
+                .date(expense.getDate())
                 .amount(expense.getAmount())
                 .paymentDestination(expense.getPaymentDestination())
                 .balanceSource(expense.getBalanceSource())
-                .date(expense.getDate())
                 .observation(expense.getObservation())
                 .userId(expense.getUser().getId())
+                /*.category(expense.getCategory()) != null ?
+                    ExpenseCategoryMapper.toExpenseCategoryResponseDTO(expense.getCategory()) : null)*/
                 .build();
     }
 }

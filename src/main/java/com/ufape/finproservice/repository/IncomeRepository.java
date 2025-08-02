@@ -1,6 +1,7 @@
 package com.ufape.finproservice.repository;
 
 import com.ufape.finproservice.model.Income;
+import com.ufape.finproservice.model.IncomeCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;
@@ -17,8 +18,11 @@ public interface IncomeRepository extends JpaRepository<Income, Long> {
     List<Income> findByPaymentOrigin(String paymentOrigin);
     
     List<Income> findByUserIdAndPaymentOrigin(Long userId, String paymentOrigin);
-    
-    // Quando descomentar a categoria na entidade:
-    // List<IncomeEntity> findByIncomeCategoryId(Long categoryId);
-    // List<IncomeEntity> findByUserIdAndIncomeCategoryId(Long userId, Long categoryId);
+
+    //métodos relacionados à categoria de receita
+    List<Income> findByIncomeCategoryId(Long categoryId);
+    List<Income> findByUserIdAndIncomeCategoryId(Long userId, IncomeCategory categoryId);
+
+    List<Income> findByCategoryId(IncomeCategory category);
+
 }

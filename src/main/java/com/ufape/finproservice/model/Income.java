@@ -20,9 +20,9 @@ public class Income {
     @Column(nullable = false)
     private LocalDate date;
 
-    /*@ManyToOne
-    @JoinColumn(name = "income_category_id")
-    private IncomeCategoryEntity category;*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "income_categories")
+    private IncomeCategory category;
 
     @Column(nullable = false, precision = 19, scale = 4)
     private BigDecimal amount;

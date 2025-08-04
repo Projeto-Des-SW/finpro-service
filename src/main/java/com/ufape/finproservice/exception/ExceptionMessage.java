@@ -12,7 +12,14 @@ public enum ExceptionMessage {
     INCOME_NOT_FOUND(404, "Income not found"),
     INCOME_NOT_OWNED(403, "User doesn't own this income"),
     EXPENSE_NOT_FOUND(404, "Expense not found"),
-    EXPENSE_NOT_OWNED(403, "User doesn't own this expense");
+    EXPENSE_NOT_OWNED(403, "User doesn't own this expense"),
+
+    INCOME_CATEGORY_ALREADY_EXISTS(400, "Income category already exists"),
+
+    INCOME_CATEGORY_NOT_FOUND(404, "Income category not found"),
+
+    CATEGORY_HAS_INCOME(409, "Cannot delete income category that has associated incomes");
+
 
     private final int code;
     private final String description;

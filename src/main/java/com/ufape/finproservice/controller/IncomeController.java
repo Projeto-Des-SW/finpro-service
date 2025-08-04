@@ -55,4 +55,14 @@ public class IncomeController {
             @RequestParam @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$") String endDate) {
         return incomeService.findIncomesByPeriod(startDate, endDate);
     }
+
+    @GetMapping("/category/{categoryId}")
+    public List<IncomeResponseDTO> getIncomesByIncomeCategory(@PathVariable Long categoryId) {
+        return incomeService.findIncomesByCategory(categoryId);
+    }
+
+    @GetMapping("/user/category/{categoryId}")
+    public List<IncomeResponseDTO> getAllIncomesByCategory(@PathVariable Long categoryId) {
+        return incomeService.findAllIncomesByCategory(categoryId);
+    }
 }

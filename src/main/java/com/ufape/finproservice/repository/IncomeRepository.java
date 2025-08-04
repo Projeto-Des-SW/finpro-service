@@ -19,10 +19,8 @@ public interface IncomeRepository extends JpaRepository<Income, Long> {
     
     List<Income> findByUserIdAndPaymentOrigin(Long userId, String paymentOrigin);
 
-    //métodos relacionados à categoria de receita
-    List<Income> findByIncomeCategoryId(Long categoryId);
-    List<Income> findByUserIdAndIncomeCategoryId(Long userId, IncomeCategory categoryId);
+    List<Income> findByIncomeCategoryId(Long incomeCategoryId);
 
-    List<Income> findByCategoryId(IncomeCategory category);
+    List<Income> findByUserIdAndIncomeCategoryId(Long userId, Long incomeCategoryId);
 
 }

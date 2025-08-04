@@ -79,7 +79,7 @@ public class IncomeService {
         existingIncome.setPaymentOrigin(incomeDTO.getPaymentOrigin());
         existingIncome.setBalanceSource(incomeDTO.getBalanceSource());
         existingIncome.setObservation(incomeDTO.getObservation());
-        existingIncome.setCategory(category);
+        existingIncome.setIncomeCategory(category);
         
         Income updatedIncome = incomeRepository.save(existingIncome);
         return IncomeMapper.toIncomeResponseDTO(updatedIncome);
@@ -91,6 +91,29 @@ public class IncomeService {
         
         validateUserOwnership(income);
         incomeRepository.delete(income);
+    }
+
+    public List<IncomeResponseDTO> findIncomesByCategory(Long categoryId) {
+
+        UserEntity user = getCurrentUser();
+
+        incomeCategoryRepository.findById(categoryId)
+                .orElseThrow(() -> new CustomException(ExceptionMessage.INCOME_CATEGORY_NOT_FOUND));
+
+        List<Income> incomes = incomeRepository.findByUserIdAndIncomeCategoryId(user.getId(), categoryId);
+        return incomes.stream()
+                .map(IncomeMapper::toIncomeResponseDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<IncomeResponseDTO> findAllIncomesByCategory(Long categoryId) {
+        incomeCategoryRepository.findById(categoryId)
+                .orElseThrow(() -> new CustomException(ExceptionMessage.INCOME_CATEGORY_NOT_FOUND));
+
+        List<Income> incomes = incomeRepository.findByIncomeCategoryId(categoryId);
+        return incomes.stream()
+                .map(IncomeMapper::toIncomeResponseDTO)
+                .collect(Collectors.toList());
     }
 
     private UserEntity getCurrentUser() {

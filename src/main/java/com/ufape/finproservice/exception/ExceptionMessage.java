@@ -18,7 +18,7 @@ public enum ExceptionMessage {
 
     INCOME_CATEGORY_NOT_FOUND(404, "Income category not found"),
 
-    CATEGORY_HAS_INCOME(409, "Cannot delete income category that has associated incomes"),;
+    CATEGORY_HAS_INCOME(409, "Cannot delete income category that has associated incomes");
 
 
     private final int code;

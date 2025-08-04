@@ -18,7 +18,7 @@ public class IncomeMapper {
                 .balanceSource(dto.getBalanceSource())
                 .observation(dto.getObservation())
                 .user(user)
-                .category(category)
+                .incomeCategory(category)
                 .build();
     }
 
@@ -33,8 +33,8 @@ public class IncomeMapper {
                 .balanceSource(income.getBalanceSource())
                 .observation(income.getObservation())
                 .userId(income.getUser().getId())
-                .category(income.getCategory() != null ?
-                    IncomeCategoryMapper.toIncomeCategoryResponseDTO(income.getCategory()) : null)
+                .category(income.getIncomeCategory() != null ?
+                    IncomeCategoryMapper.toIncomeCategoryResponseDTO(income.getIncomeCategory()) : null)
                 .build();
     }
 }

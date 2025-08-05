@@ -55,4 +55,14 @@ public class ExpenseController {
             @RequestParam @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$") String endDate) {
         return expenseService.findExpensesByPeriod(startDate, endDate);
     }
+
+    @GetMapping("/category/{categoryId}")
+    public List<ExpenseResponseDTO> getExpensesByExpenseCategory(@PathVariable Long categoryId) {
+        return expenseService.findExpensesByCategory(categoryId);
+    }
+
+    @GetMapping("/user/category/{categoryId}")
+    public List<ExpenseResponseDTO> getAllExpensesByCategory(@PathVariable Long categoryId) {
+        return expenseService.findAllExpensesByCategory(categoryId);
+    }
 }

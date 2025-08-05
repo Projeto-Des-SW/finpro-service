@@ -27,7 +27,6 @@ public class ExpenseCategoryMapper {
         if (expenseCategory == null) return null;
 
         return ExpenseCategoryDTO.builder()
-                .expenseCategoryId(expenseCategory.getId())
                 .name(expenseCategory.getName())
                 .build();
     }

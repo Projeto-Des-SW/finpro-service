@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class ExpenseCategoryDTO {
-    private Long expenseCategoryId;
     private String name;
 }

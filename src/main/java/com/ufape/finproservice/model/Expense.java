@@ -20,9 +20,9 @@ public class Expense {
     @Column(nullable = false)
     private LocalDate date;
 
-    /*@ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "expense_category_id")
-    private ExpenseCategoryEntity category;*/
+    private ExpenseCategory expenseCategory;
 
     @Column(nullable = false, precision = 19, scale = 4)
     private BigDecimal amount;

@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class ExpenseResponseDTO {
     private Long expenseId;
     private LocalDate date;
-    //private ExpenseCategoryResponseDTO category;
+    private ExpenseCategoryResponseDTO category;
     private BigDecimal amount;
     private String paymentDestination;
     private String balanceSource;

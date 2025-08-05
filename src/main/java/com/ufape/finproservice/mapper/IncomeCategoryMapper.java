@@ -27,7 +27,6 @@ public class IncomeCategoryMapper {
         if (incomeCategory == null) return null;
 
         return IncomeCategoryDTO.builder()
-                .incomeCategoryId(incomeCategory.getId())
                 .name(incomeCategory.getName())
                 .build();
     }

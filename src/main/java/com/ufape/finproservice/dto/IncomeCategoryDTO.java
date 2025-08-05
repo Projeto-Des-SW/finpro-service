@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class IncomeCategoryDTO {
-    private Long incomeCategoryId;
     private String name;
 }

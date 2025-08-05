@@ -17,5 +17,4 @@ public class IncomeDTO {
     private String paymentOrigin;
     private String balanceSource;
     private String observation;
-    private Long userId;
 }

@@ -17,6 +17,5 @@ public class ExpenseDTO {
     private String paymentDestination;
     private String balanceSource;
     private String observation;
-    private Long userId;
  }
 

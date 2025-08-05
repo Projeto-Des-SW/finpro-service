@@ -18,7 +18,7 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
     List<Expense> findByUserIdAndPaymentDestination(Long userId, String paymentDestination);
 
-    // Quando descomentar a categoria na entidade:
-    // List<ExpenseEntity> findByExpenseCategoryId(Long categoryId);
-    // List<ExpenseEntity> findByUserIdAndExpenseCategoryId(Long userId, Long categoryId);
+    List<Expense> findByExpenseCategoryId(Long categoryId);
+    
+    List<Expense> findByUserIdAndExpenseCategoryId(Long userId, Long categoryId);
 }

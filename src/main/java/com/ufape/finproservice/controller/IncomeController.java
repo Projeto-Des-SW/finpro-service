@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -62,7 +63,11 @@ public class IncomeController {
     }
 
     @GetMapping("/user/category/{categoryId}")
-    public List<IncomeResponseDTO> getAllIncomesByCategory(@PathVariable Long categoryId) {
-        return incomeService.findAllIncomesByCategory(categoryId);
+    public List<IncomeResponseDTO> getAllIncomesByCategory(
+            @PathVariable Long categoryId,
+            @RequestParam(required = false) LocalDate startDate,
+            @RequestParam(required = false) LocalDate endDate) {
+
+        return incomeService.findAllIncomes(categoryId, startDate, endDate);
     }
 }

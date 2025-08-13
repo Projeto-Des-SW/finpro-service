@@ -12,6 +12,7 @@ import com.ufape.finproservice.repository.IncomeCategoryRepository;
 import com.ufape.finproservice.repository.IncomeRepository;
 import com.ufape.finproservice.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.ufape.finproservice.specification.IncomeSpecifications.*;
 
 @Service
 @AllArgsConstructor
@@ -106,14 +109,25 @@ public class IncomeService {
                 .collect(Collectors.toList());
     }
 
-    public List<IncomeResponseDTO> findAllIncomesByCategory(Long categoryId) {
-        incomeCategoryRepository.findById(categoryId)
-                .orElseThrow(() -> new CustomException(ExceptionMessage.INCOME_CATEGORY_NOT_FOUND));
+    public List<IncomeResponseDTO> findAllIncomes(Long categoryId, LocalDate startDate, LocalDate endDate) {
+        UserEntity user = getCurrentUser();
 
-        List<Income> incomes = incomeRepository.findByIncomeCategoryId(categoryId);
-        return incomes.stream()
+        Specification<Income> spec = Specification.allOf(
+                belongsToUser(user),
+                hasCategory(categoryId)
+        );
+
+        if (startDate != null) {
+            spec = spec.and(dateOnOrAfter(startDate));
+        }
+        if (endDate != null) {
+            spec = spec.and(dateOnOrBefore(endDate));
+        }
+
+        return incomeRepository.findAll(spec)
+                .stream()
                 .map(IncomeMapper::toIncomeResponseDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private UserEntity getCurrentUser() {

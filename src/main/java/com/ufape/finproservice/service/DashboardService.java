@@ -1,5 +1,6 @@
 package com.ufape.finproservice.service;
 
+import com.ufape.finproservice.dto.CategoryExpenseSumDTO;
 import com.ufape.finproservice.dto.MonthlyExpenseSumDTO;
 import com.ufape.finproservice.model.UserEntity;
 import com.ufape.finproservice.repository.ExpenseRepository;
@@ -19,5 +20,10 @@ public class DashboardService {
     public List<MonthlyExpenseSumDTO> getMonthlyExpenseSums(Integer year) {
         UserEntity user = currentUserService.getCurrentUser();
         return expenseRepository.sumByMonth(user, year);
+    }
+
+    public List<CategoryExpenseSumDTO> getCategoryExpenseSums(Integer year, Integer month) {
+        UserEntity user = currentUserService.getCurrentUser();
+        return expenseRepository.sumByCategoryPerMonth(user, year, month);
     }
 }

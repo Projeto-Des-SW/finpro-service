@@ -1,5 +1,6 @@
 package com.ufape.finproservice.controller;
 
+import com.ufape.finproservice.dto.CategoryExpenseSumDTO;
 import com.ufape.finproservice.dto.MonthlyExpenseSumDTO;
 import com.ufape.finproservice.service.DashboardService;
 import lombok.AllArgsConstructor;
@@ -22,5 +23,13 @@ public class DashboardController {
             @RequestParam(required = false) Integer year
     ) {
         return dashboardService.getMonthlyExpenseSums(year);
+    }
+
+    @GetMapping("/expenses/by-category")
+    public List<CategoryExpenseSumDTO> getExpensesByCategory(
+            @RequestParam(required = false) Integer year,
+            @RequestParam(required = false) Integer month
+    ) {
+        return dashboardService.getCategoryExpenseSums(year, month);
     }
 }

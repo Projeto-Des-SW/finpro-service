@@ -10,10 +10,9 @@ import com.ufape.finproservice.model.IncomeCategory;
 import com.ufape.finproservice.model.UserEntity;
 import com.ufape.finproservice.repository.IncomeCategoryRepository;
 import com.ufape.finproservice.repository.IncomeRepository;
-import com.ufape.finproservice.repository.UserRepository;
+import com.ufape.finproservice.util.CurrentUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -28,12 +27,12 @@ import static com.ufape.finproservice.specification.IncomeSpecifications.*;
 public class IncomeService {
 
     private final IncomeRepository incomeRepository;
-    private final UserRepository userRepository;
     private final IncomeCategoryRepository incomeCategoryRepository;
+    private final CurrentUserService currentUserService;
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public IncomeResponseDTO createIncome(IncomeDTO incomeDTO) {
-        UserEntity user = getCurrentUser();
+        UserEntity user = currentUserService.getCurrentUser();
 
         IncomeCategory category = incomeCategoryRepository.findById(incomeDTO.getIncomeCategoryId())
                 .orElseThrow(() -> new CustomException(ExceptionMessage.INCOME_CATEGORY_NOT_FOUND));
@@ -52,14 +51,14 @@ public class IncomeService {
     }
 
     public List<IncomeResponseDTO> findAllUserIncomes() {
-        UserEntity user = getCurrentUser();
+        UserEntity user = currentUserService.getCurrentUser();
         return incomeRepository.findByUserId(user.getId()).stream()
                 .map(IncomeMapper::toIncomeResponseDTO)
                 .collect(Collectors.toList());
     }
 
     public List<IncomeResponseDTO> findIncomesByPeriod(String startDateStr, String endDateStr) {
-        UserEntity user = getCurrentUser();
+        UserEntity user = currentUserService.getCurrentUser();
         LocalDate startDate = LocalDate.parse(startDateStr, dateFormatter);
         LocalDate endDate = LocalDate.parse(endDateStr, dateFormatter);
         
@@ -98,7 +97,7 @@ public class IncomeService {
 
     public List<IncomeResponseDTO> findIncomesByCategory(Long categoryId) {
 
-        UserEntity user = getCurrentUser();
+        UserEntity user = currentUserService.getCurrentUser();
 
         incomeCategoryRepository.findById(categoryId)
                 .orElseThrow(() -> new CustomException(ExceptionMessage.INCOME_CATEGORY_NOT_FOUND));
@@ -110,7 +109,7 @@ public class IncomeService {
     }
 
     public List<IncomeResponseDTO> findAllIncomes(Long categoryId, LocalDate startDate, LocalDate endDate) {
-        UserEntity user = getCurrentUser();
+        UserEntity user = currentUserService.getCurrentUser();
 
         Specification<Income> spec = Specification.allOf(
                 belongsToUser(user),
@@ -130,14 +129,8 @@ public class IncomeService {
                 .toList();
     }
 
-    private UserEntity getCurrentUser() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return userRepository.findByEmail(username)
-               .orElseThrow(() -> new CustomException(ExceptionMessage.USER_NOT_FOUND));
-    }
-
     private void validateUserOwnership(Income income) {
-        UserEntity currentUser = getCurrentUser();
+        UserEntity currentUser = currentUserService.getCurrentUser();
         if (!income.getUser().getId().equals(currentUser.getId())) {
             throw new CustomException(ExceptionMessage.INCOME_NOT_OWNED);
         }

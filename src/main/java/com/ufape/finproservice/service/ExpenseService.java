@@ -10,10 +10,9 @@ import com.ufape.finproservice.model.ExpenseCategory;
 import com.ufape.finproservice.model.UserEntity;
 import com.ufape.finproservice.repository.ExpenseCategoryRepository;
 import com.ufape.finproservice.repository.ExpenseRepository;
-import com.ufape.finproservice.repository.UserRepository;
+import com.ufape.finproservice.util.CurrentUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -28,12 +27,12 @@ import static com.ufape.finproservice.specification.ExpenseSpecifications.*;
 public class ExpenseService {
 
     private final ExpenseRepository expenseRepository;
-    private final UserRepository userRepository;
     private final ExpenseCategoryRepository expenseCategoryRepository;
+    private final CurrentUserService currentUserService;
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public ExpenseResponseDTO createExpense(ExpenseDTO expenseDTO) {
-        UserEntity user = getCurrentUser();
+        UserEntity user = currentUserService.getCurrentUser();
 
         ExpenseCategory category = expenseCategoryRepository.findById(expenseDTO.getExpenseCategoryId())
                 .orElseThrow(() -> new CustomException(ExceptionMessage.EXPENSE_CATEGORY_NOT_FOUND));
@@ -52,14 +51,14 @@ public class ExpenseService {
     }
 
     public List<ExpenseResponseDTO> findAllUserExpenses() {
-        UserEntity user = getCurrentUser();
+        UserEntity user = currentUserService.getCurrentUser();
         return expenseRepository.findByUserId(user.getId()).stream()
                 .map(ExpenseMapper::toExpenseResponseDTO)
                 .collect(Collectors.toList());
     }
 
     public List<ExpenseResponseDTO> findExpensesByPeriod(String startDateStr, String endDateStr) {
-        UserEntity user = getCurrentUser();
+        UserEntity user = currentUserService.getCurrentUser();
         LocalDate startDate = LocalDate.parse(startDateStr, dateFormatter);
         LocalDate endDate = LocalDate.parse(endDateStr, dateFormatter);
         
@@ -97,7 +96,7 @@ public class ExpenseService {
     }
 
     public List<ExpenseResponseDTO> findExpensesByCategory(Long categoryId) {
-        UserEntity user = getCurrentUser();
+        UserEntity user = currentUserService.getCurrentUser();
 
         expenseCategoryRepository.findById(categoryId)
                 .orElseThrow(() -> new CustomException(ExceptionMessage.EXPENSE_CATEGORY_NOT_FOUND));
@@ -109,7 +108,7 @@ public class ExpenseService {
     }
 
     public List<ExpenseResponseDTO> findAllExpenses(Long categoryId, LocalDate startDate, LocalDate endDate) {
-        UserEntity user = getCurrentUser();
+        UserEntity user = currentUserService.getCurrentUser();
         Specification<Expense> spec = Specification.allOf(
                 belongsToUser(user),
                 hasCategory(categoryId)
@@ -128,14 +127,8 @@ public class ExpenseService {
                 .toList();
     }
 
-    private UserEntity getCurrentUser() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return userRepository.findByEmail(username)
-               .orElseThrow(() -> new CustomException(ExceptionMessage.USER_NOT_FOUND));
-    }
-
     private void validateUserOwnership(Expense expense) {
-        UserEntity currentUser = getCurrentUser();
+        UserEntity currentUser = currentUserService.getCurrentUser();
         if (!expense.getUser().getId().equals(currentUser.getId())) {
             throw new CustomException(ExceptionMessage.EXPENSE_NOT_OWNED);
         }

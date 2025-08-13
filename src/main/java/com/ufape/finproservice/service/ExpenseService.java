@@ -12,6 +12,7 @@ import com.ufape.finproservice.repository.ExpenseCategoryRepository;
 import com.ufape.finproservice.repository.ExpenseRepository;
 import com.ufape.finproservice.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.ufape.finproservice.specification.ExpenseSpecifications.*;
 
 @Service
 @AllArgsConstructor
@@ -105,14 +108,24 @@ public class ExpenseService {
                 .collect(Collectors.toList());
     }
 
-    public List<ExpenseResponseDTO> findAllExpensesByCategory(Long categoryId) {
-        expenseCategoryRepository.findById(categoryId)
-                .orElseThrow(() -> new CustomException(ExceptionMessage.EXPENSE_CATEGORY_NOT_FOUND));
+    public List<ExpenseResponseDTO> findAllExpenses(Long categoryId, LocalDate startDate, LocalDate endDate) {
+        UserEntity user = getCurrentUser();
+        Specification<Expense> spec = Specification.allOf(
+                belongsToUser(user),
+                hasCategory(categoryId)
+        );
 
-        List<Expense> expenses = expenseRepository.findByExpenseCategoryId(categoryId);
-        return expenses.stream()
+        if (startDate != null) {
+            spec = spec.and(dateAfter(startDate));
+        }
+        if (endDate != null) {
+            spec = spec.and(dateBefore(endDate));
+        }
+
+        return expenseRepository.findAll(spec)
+                .stream()
                 .map(ExpenseMapper::toExpenseResponseDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private UserEntity getCurrentUser() {

@@ -1,14 +1,14 @@
 package com.ufape.finproservice.repository;
 
 import com.ufape.finproservice.model.Income;
-import com.ufape.finproservice.model.IncomeCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public interface IncomeRepository extends JpaRepository<Income, Long> {
-    
+public interface IncomeRepository extends JpaRepository<Income, Long>, JpaSpecificationExecutor<Income> {
+
     List<Income> findByUserId(Long userId);
     
     List<Income> findByDateBetween(LocalDate startDate, LocalDate endDate);

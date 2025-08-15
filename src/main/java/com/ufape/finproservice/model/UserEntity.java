@@ -1,6 +1,5 @@
 package com.ufape.finproservice.model;
 
-
 import com.ufape.finproservice.enumeration.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

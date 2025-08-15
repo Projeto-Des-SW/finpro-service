@@ -36,8 +36,8 @@ public class DashboardService {
         return incomeRepository.sumByMonth(user, year);
     }
 
-    /*public List<CategoryIncomeSumDTO> getCategoryIncomeSums(Integer year, Integer month) {
+    public List<CategoryIncomeSumDTO> getCategoryIncomeSums(Integer year, Integer month) {
         UserEntity user = currentUserService.getCurrentUser();
         return incomeRepository.sumByCategoryPerMonth(user, year, month);
-    }*/    
+    }    
 }

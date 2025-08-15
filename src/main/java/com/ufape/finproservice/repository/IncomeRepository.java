@@ -31,7 +31,7 @@ public interface IncomeRepository extends JpaRepository<Income, Long>, JpaSpecif
 
     @Query("""
         select new com.ufape.finproservice.dto.MonthlyIncomeSumDTO(
-            year(i.date), month(i.date), sum(i.amount
+            year(i.date), month(i.date), sum(i.amount)
         )
         from Income i
         where i.user = :user

@@ -1,7 +1,9 @@
 package com.ufape.finproservice.controller;
 
 import com.ufape.finproservice.dto.CategoryExpenseSumDTO;
+import com.ufape.finproservice.dto.CategoryIncomeSumDTO;
 import com.ufape.finproservice.dto.MonthlyExpenseSumDTO;
+import com.ufape.finproservice.dto.MonthlyIncomeSumDTO;
 import com.ufape.finproservice.service.DashboardService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,5 +33,18 @@ public class DashboardController {
             @RequestParam(required = false) Integer month
     ) {
         return dashboardService.getCategoryExpenseSums(year, month);
+    }
+
+    @GetMapping("/incomes/monthly")
+    public List<MonthlyIncomeSumDTO> getMonthlyIncomes(
+            @RequestParam(required = false) Integer year) {
+        return dashboardService.getMonthlyIncomeSums(year);
+    }
+
+    @GetMapping("/incomes/by-category")
+    public List<CategoryIncomeSumDTO> getIncomesByCategory(
+            @RequestParam(required = false) Integer year,
+            @RequestParam(required = false) Integer month) {
+        return dashboardService.getCategoryIncomeSums(year, month);
     }
 }

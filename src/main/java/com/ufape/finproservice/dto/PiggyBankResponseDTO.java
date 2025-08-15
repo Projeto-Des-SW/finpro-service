@@ -1,5 +1,6 @@
 package com.ufape.finproservice.dto;
 
+import com.ufape.finproservice.enumeration.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,5 +17,5 @@ public class PiggyBankResponseDTO {
     private BigDecimal monthlyDeposit;
     private BigDecimal savingsGoal;
     private LocalDate targetDate;
-    private String status;
+    private Status status;
 }

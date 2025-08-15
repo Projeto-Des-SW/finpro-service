@@ -1,5 +1,6 @@
 package com.ufape.finproservice.model;
 
+import com.ufape.finproservice.enumeration.Status;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,9 +22,6 @@ public class PiggyBank {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(nullable = false, unique = true)
-    private String status;
-
     @Column(nullable = false)
     private BigDecimal monthlyDeposit;
 
@@ -32,6 +30,9 @@ public class PiggyBank {
 
     @Column(nullable = false)
     private LocalDate targetDate;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)

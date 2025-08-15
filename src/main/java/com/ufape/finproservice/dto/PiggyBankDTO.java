@@ -1,5 +1,6 @@
 package com.ufape.finproservice.dto;
 
+import com.ufape.finproservice.enumeration.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,8 +12,8 @@ import java.time.LocalDate;
 @Builder
 public class PiggyBankDTO {
     private String name;
-    private String status;
     private BigDecimal monthlyDeposit;
     private BigDecimal savingsGoal;
     private LocalDate targetDate;
+    private Status status;
 }

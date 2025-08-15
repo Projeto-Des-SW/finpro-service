@@ -21,14 +21,17 @@ public class PiggyBank {
     @Column(nullable = false, unique = true)
     private String name;
 
+    @Column(nullable = false, unique = true)
+    private String status;
+
+    @Column(nullable = false)
+    private BigDecimal monthlyDeposit;
+
     @Column(nullable = false)
     private BigDecimal savingsGoal;
 
     @Column(nullable = false)
     private LocalDate targetDate;
-
-    @Column(nullable = false)
-    private BigDecimal monthlyDeposit;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)

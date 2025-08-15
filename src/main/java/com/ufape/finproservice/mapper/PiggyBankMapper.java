@@ -16,10 +16,11 @@ public class PiggyBankMapper {
                 .monthlyDeposit(dto.getMonthlyDeposit())
                 .savingsGoal(dto.getSavingsGoal())
                 .targetDate(dto.getTargetDate())
+                .user(user)
                 .build();
     }
 
-    public static PiggyBankResponseDTO piggyBankResponseDTO(PiggyBank piggyBank) {
+    public static PiggyBankResponseDTO toPiggyBankResponseDTO(PiggyBank piggyBank) {
         if (piggyBank == null) return null;
 
         return PiggyBankResponseDTO.builder()

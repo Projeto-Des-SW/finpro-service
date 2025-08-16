@@ -43,4 +43,10 @@ public class PiggyBankController {
             @RequestBody @Valid PiggyBankDTO piggyBankDTO) {
         return piggyBankService.updatePiggyBank(id, piggyBankDTO);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletePiggyBank(@PathVariable Long id) {
+        piggyBankService.deletePiggyBank(id);
+    }
 }

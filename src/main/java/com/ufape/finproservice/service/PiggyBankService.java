@@ -78,7 +78,6 @@ public class PiggyBankService {
         return PiggyBankMapper.toPiggyBankResponseDTO(updatedPiggyBank);
     }
 
-/*
     @Transactional
     public void deletePiggyBank(Long id) {
         UserEntity user = currentUserService.getCurrentUser();
@@ -87,13 +86,4 @@ public class PiggyBankService {
 
         piggyBankRepository.delete(piggyBank);
     }
-
-    private void validateUserOwnership(PiggyBank piggyBank) {
-        UserEntity currentUser = currentUserService.getCurrentUser();
-        if (!piggyBank.getUser().getId().equals(currentUser.getId())) {
-            throw new CustomException(ExceptionMessage.PIGGY_BANK_NOT_OWNED);
-        }
-    }
-
-  */
 }

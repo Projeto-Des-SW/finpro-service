@@ -35,14 +35,14 @@ public class PiggyBankService {
         return PiggyBankMapper.toPiggyBankResponseDTO(savedPiggyBank);
     }
 
- /*   public PiggyBankResponseDTO findPiggyBankById(Long id) {
+    public PiggyBankResponseDTO findPiggyBankById(Long id) {
         UserEntity user = currentUserService.getCurrentUser();
         PiggyBank piggyBank = piggyBankRepository.findByPiggyBankIdAndUserId(id, user.getId())
                 .orElseThrow(() -> new CustomException(ExceptionMessage.PIGGY_BANK_NOT_FOUND));
 
         return PiggyBankMapper.toPiggyBankResponseDTO(piggyBank);
     }
-
+/*
     public List<PiggyBankResponseDTO> findAllUserPiggyBanks() {
         UserEntity user = currentUserService.getCurrentUser();
         return piggyBankRepository.findByUserId(user.getId()).stream()

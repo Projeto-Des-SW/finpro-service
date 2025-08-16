@@ -22,6 +22,11 @@ public class PiggyBankController {
         return piggyBankService.createPiggyBank(piggyBankDTO);
     }
 
+    @GetMapping("/{id}")
+    public PiggyBankResponseDTO getPiggyBankById(@PathVariable Long id) {
+        return piggyBankService.findPiggyBankById(id);
+    }
+
     @GetMapping("/search")
     public List<PiggyBankResponseDTO> getPiggyBanksByName(@RequestParam String name) {
         return piggyBankService.findPiggyBanksByName(name);

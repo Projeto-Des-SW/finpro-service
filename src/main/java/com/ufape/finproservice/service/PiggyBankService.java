@@ -42,14 +42,14 @@ public class PiggyBankService {
 
         return PiggyBankMapper.toPiggyBankResponseDTO(piggyBank);
     }
-/*
+
     public List<PiggyBankResponseDTO> findAllUserPiggyBanks() {
         UserEntity user = currentUserService.getCurrentUser();
         return piggyBankRepository.findByUserId(user.getId()).stream()
                 .map(PiggyBankMapper::toPiggyBankResponseDTO)
                 .collect(Collectors.toList());
     }
-*/
+
     public List<PiggyBankResponseDTO> findPiggyBanksByName(String name) {
         UserEntity user = currentUserService.getCurrentUser();
         return piggyBankRepository.findByNameContainingIgnoreCaseAndUserId(name, user.getId()).stream()

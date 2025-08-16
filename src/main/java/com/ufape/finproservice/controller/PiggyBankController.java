@@ -1,7 +1,5 @@
 package com.ufape.finproservice.controller;
 
-import com.ufape.finproservice.dto.IncomeDTO;
-import com.ufape.finproservice.dto.IncomeResponseDTO;
 import com.ufape.finproservice.dto.PiggyBankDTO;
 import com.ufape.finproservice.dto.PiggyBankResponseDTO;
 import com.ufape.finproservice.service.PiggyBankService;
@@ -9,6 +7,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/piggy-bank")
@@ -21,6 +20,11 @@ public class PiggyBankController {
     @ResponseStatus(HttpStatus.CREATED)
     public PiggyBankResponseDTO createPiggyBank(@RequestBody @Valid PiggyBankDTO piggyBankDTO) {
         return piggyBankService.createPiggyBank(piggyBankDTO);
+    }
+
+    @GetMapping("/search")
+    public List<PiggyBankResponseDTO> getPiggyBanksByName(@RequestParam String name) {
+        return piggyBankService.findPiggyBanksByName(name);
     }
 
     @PutMapping("/{id}")

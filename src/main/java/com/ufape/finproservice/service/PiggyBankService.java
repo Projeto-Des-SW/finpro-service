@@ -12,9 +12,8 @@ import com.ufape.finproservice.util.CurrentUserService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-//import java.util.List;
-//import java.util.stream.Collectors;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -50,14 +49,14 @@ public class PiggyBankService {
                 .map(PiggyBankMapper::toPiggyBankResponseDTO)
                 .collect(Collectors.toList());
     }
-
+*/
     public List<PiggyBankResponseDTO> findPiggyBanksByName(String name) {
         UserEntity user = currentUserService.getCurrentUser();
         return piggyBankRepository.findByNameContainingIgnoreCaseAndUserId(name, user.getId()).stream()
                 .map(PiggyBankMapper::toPiggyBankResponseDTO)
                 .collect(Collectors.toList());
     }
-*/
+
     @Transactional
     public PiggyBankResponseDTO updatePiggyBank(Long id, PiggyBankDTO piggyBankDTO) {
         UserEntity user = currentUserService.getCurrentUser();

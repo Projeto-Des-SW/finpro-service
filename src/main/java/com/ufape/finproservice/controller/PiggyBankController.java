@@ -1,5 +1,7 @@
 package com.ufape.finproservice.controller;
 
+import com.ufape.finproservice.dto.IncomeDTO;
+import com.ufape.finproservice.dto.IncomeResponseDTO;
 import com.ufape.finproservice.dto.PiggyBankDTO;
 import com.ufape.finproservice.dto.PiggyBankResponseDTO;
 import com.ufape.finproservice.service.PiggyBankService;
@@ -19,5 +21,12 @@ public class PiggyBankController {
     @ResponseStatus(HttpStatus.CREATED)
     public PiggyBankResponseDTO createPiggyBank(@RequestBody @Valid PiggyBankDTO piggyBankDTO) {
         return piggyBankService.createPiggyBank(piggyBankDTO);
+    }
+
+    @PutMapping("/{id}")
+    public PiggyBankResponseDTO updatePiggyBank(
+            @PathVariable Long id,
+            @RequestBody @Valid PiggyBankDTO piggyBankDTO) {
+        return piggyBankService.updatePiggyBank(id, piggyBankDTO);
     }
 }

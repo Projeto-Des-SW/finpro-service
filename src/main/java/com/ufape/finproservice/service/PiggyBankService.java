@@ -57,7 +57,7 @@ public class PiggyBankService {
                 .map(PiggyBankMapper::toPiggyBankResponseDTO)
                 .collect(Collectors.toList());
     }
-
+*/
     @Transactional
     public PiggyBankResponseDTO updatePiggyBank(Long id, PiggyBankDTO piggyBankDTO) {
         UserEntity user = currentUserService.getCurrentUser();
@@ -79,6 +79,7 @@ public class PiggyBankService {
         return PiggyBankMapper.toPiggyBankResponseDTO(updatedPiggyBank);
     }
 
+/*
     @Transactional
     public void deletePiggyBank(Long id) {
         UserEntity user = currentUserService.getCurrentUser();

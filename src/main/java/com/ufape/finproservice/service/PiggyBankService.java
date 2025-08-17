@@ -12,9 +12,8 @@ import com.ufape.finproservice.util.CurrentUserService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-//import java.util.List;
-//import java.util.stream.Collectors;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -36,7 +35,7 @@ public class PiggyBankService {
         return PiggyBankMapper.toPiggyBankResponseDTO(savedPiggyBank);
     }
 
- /*   public PiggyBankResponseDTO findPiggyBankById(Long id) {
+    public PiggyBankResponseDTO findPiggyBankById(Long id) {
         UserEntity user = currentUserService.getCurrentUser();
         PiggyBank piggyBank = piggyBankRepository.findByPiggyBankIdAndUserId(id, user.getId())
                 .orElseThrow(() -> new CustomException(ExceptionMessage.PIGGY_BANK_NOT_FOUND));
@@ -87,13 +86,4 @@ public class PiggyBankService {
 
         piggyBankRepository.delete(piggyBank);
     }
-
-    private void validateUserOwnership(PiggyBank piggyBank) {
-        UserEntity currentUser = currentUserService.getCurrentUser();
-        if (!piggyBank.getUser().getId().equals(currentUser.getId())) {
-            throw new CustomException(ExceptionMessage.PIGGY_BANK_NOT_OWNED);
-        }
-    }
-
-  */
 }

@@ -16,4 +16,6 @@ public class PiggyBankDTO {
     private BigDecimal savingsGoal;
     private LocalDate targetDate;
     private Status status;
+    private BigDecimal currentAmount;
+    private Integer depositDay;
 }

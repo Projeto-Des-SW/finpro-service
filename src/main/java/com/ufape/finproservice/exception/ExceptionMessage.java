@@ -21,7 +21,9 @@ public enum ExceptionMessage {
     EXPENSE_CATEGORY_ALREADY_EXISTS(409, "Expense category already exists"),
     PIGGY_BANK_ALREADY_EXISTS(400, "Piggy bank already exists"),
     PIGGY_BANK_NOT_FOUND(404, "Piggy bank not found"),
-    PIGGY_BANK_NOT_OWNED(403, "User doesn't own this piggy bank");
+    PIGGY_BANK_NOT_OWNED(403, "User doesn't own this piggy bank"),
+
+    INVALID_AMOUNT(400, "Invalid amount");
 
     private final int code;
     private final String description;

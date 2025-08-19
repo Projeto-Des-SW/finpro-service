@@ -23,7 +23,9 @@ public enum ExceptionMessage {
     PIGGY_BANK_NOT_FOUND(404, "Piggy bank not found"),
     PIGGY_BANK_NOT_OWNED(403, "User doesn't own this piggy bank"),
 
-    INVALID_AMOUNT(400, "Invalid amount");
+    INVALID_AMOUNT(400, "Invalid amount"),
+
+    CONTENT_NOT_FOUND(404, "Content not found");
 
     private final int code;
     private final String description;

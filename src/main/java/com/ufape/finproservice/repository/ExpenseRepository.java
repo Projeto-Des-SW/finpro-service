@@ -20,7 +20,7 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long>, JpaSpec
 
     List<Expense> findByUserIdAndDateBetween(Long userId, LocalDate startDate, LocalDate endDate);
 
-    List<Expense> findByPaymentDestination(String paymentOrigin);
+    List<Expense> findByPaymentDestination(String paymentDestination);
 
     List<Expense> findByUserIdAndPaymentDestination(Long userId, String paymentDestination);
 

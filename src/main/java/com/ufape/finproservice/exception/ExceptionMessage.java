@@ -25,7 +25,8 @@ public enum ExceptionMessage {
 
     INVALID_AMOUNT(400, "Invalid amount"),
 
-    CONTENT_NOT_FOUND(404, "Content not found");
+    CONTENT_NOT_FOUND(404, "Content not found"),
+    INVESTOR_PROFILE_NOT_FOUND(404, "Investor profile not found");
 
     private final int code;
     private final String description;

@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import com.ufape.finproservice.dto.ExpenseCategoryDTO;
-import com.ufape.finproservice.dto.ExpenseCategoryResponseDTO;
+import com.ufape.finproservice.dto.response.ExpenseCategoryResponseDTO;
 import com.ufape.finproservice.service.ExpenseCategoryService;
 
 import jakarta.validation.Valid;

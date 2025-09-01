@@ -1,7 +1,7 @@
 package com.ufape.finproservice.service;
 
 import com.ufape.finproservice.dto.LoginDTO;
-import com.ufape.finproservice.dto.LoginResponseDTO;
+import com.ufape.finproservice.dto.response.LoginResponseDTO;
 import com.ufape.finproservice.dto.UserDTO;
 import com.ufape.finproservice.exception.CustomException;
 import com.ufape.finproservice.exception.ExceptionMessage;

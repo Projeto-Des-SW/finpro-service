@@ -1,4 +1,4 @@
-package com.ufape.finproservice.dto;
+package com.ufape.finproservice.dto.response;
 
 import com.ufape.finproservice.enumeration.Status;
 import lombok.AllArgsConstructor;

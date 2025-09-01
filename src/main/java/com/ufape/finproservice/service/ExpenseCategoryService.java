@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.ufape.finproservice.dto.ExpenseCategoryDTO;
-import com.ufape.finproservice.dto.ExpenseCategoryResponseDTO;
+import com.ufape.finproservice.dto.response.ExpenseCategoryResponseDTO;
 import com.ufape.finproservice.exception.CustomException;
 import com.ufape.finproservice.exception.ExceptionMessage;
 import com.ufape.finproservice.mapper.ExpenseCategoryMapper;

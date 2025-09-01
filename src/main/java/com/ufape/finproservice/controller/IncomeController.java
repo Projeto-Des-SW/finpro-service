@@ -1,7 +1,7 @@
 package com.ufape.finproservice.controller;
 
 import com.ufape.finproservice.dto.IncomeDTO;
-import com.ufape.finproservice.dto.IncomeResponseDTO;
+import com.ufape.finproservice.dto.response.IncomeResponseDTO;
 import com.ufape.finproservice.service.IncomeService;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;

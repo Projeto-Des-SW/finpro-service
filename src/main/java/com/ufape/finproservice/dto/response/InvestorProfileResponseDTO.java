@@ -1,4 +1,4 @@
-package com.ufape.finproservice.dto;
+package com.ufape.finproservice.dto.response;
 
 import java.time.LocalDateTime;
 

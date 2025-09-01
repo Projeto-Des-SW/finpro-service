@@ -1,7 +1,7 @@
 package com.ufape.finproservice.service;
 
 import com.ufape.finproservice.dto.IncomeCategoryDTO;
-import com.ufape.finproservice.dto.IncomeCategoryResponseDTO;
+import com.ufape.finproservice.dto.response.IncomeCategoryResponseDTO;
 import com.ufape.finproservice.exception.CustomException;
 import com.ufape.finproservice.exception.ExceptionMessage;
 import com.ufape.finproservice.mapper.IncomeCategoryMapper;

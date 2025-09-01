@@ -1,7 +1,7 @@
 package com.ufape.finproservice.mapper;
 
 import com.ufape.finproservice.dto.EducationalContentDTO;
-import com.ufape.finproservice.dto.EducationalContentResponseDTO;
+import com.ufape.finproservice.dto.response.EducationalContentResponseDTO;
 import com.ufape.finproservice.model.EducationalContent;
 
 public class EducationalContentMapper {

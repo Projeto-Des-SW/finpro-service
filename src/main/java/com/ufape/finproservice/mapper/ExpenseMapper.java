@@ -1,7 +1,7 @@
 package com.ufape.finproservice.mapper;
 
 import com.ufape.finproservice.dto.ExpenseDTO;
-import com.ufape.finproservice.dto.ExpenseResponseDTO;
+import com.ufape.finproservice.dto.response.ExpenseResponseDTO;
 import com.ufape.finproservice.model.Expense;
 import com.ufape.finproservice.model.ExpenseCategory;
 import com.ufape.finproservice.model.UserEntity;

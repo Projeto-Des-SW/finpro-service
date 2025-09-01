@@ -1,6 +1,8 @@
 package com.ufape.finproservice.service;
 
 import com.ufape.finproservice.dto.*;
+import com.ufape.finproservice.dto.response.PiggyBankDepositResponseDTO;
+import com.ufape.finproservice.dto.response.PiggyBankResponseDTO;
 import com.ufape.finproservice.enumeration.Status;
 import com.ufape.finproservice.exception.CustomException;
 import com.ufape.finproservice.exception.ExceptionMessage;

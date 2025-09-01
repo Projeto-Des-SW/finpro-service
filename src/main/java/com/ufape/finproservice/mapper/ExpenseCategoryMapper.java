@@ -1,7 +1,7 @@
 package com.ufape.finproservice.mapper;
 
 import com.ufape.finproservice.dto.ExpenseCategoryDTO;
-import com.ufape.finproservice.dto.ExpenseCategoryResponseDTO;
+import com.ufape.finproservice.dto.response.ExpenseCategoryResponseDTO;
 import com.ufape.finproservice.model.ExpenseCategory;
 
 public class ExpenseCategoryMapper {

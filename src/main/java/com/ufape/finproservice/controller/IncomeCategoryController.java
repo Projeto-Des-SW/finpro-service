@@ -1,7 +1,7 @@
 package com.ufape.finproservice.controller;
 
 import com.ufape.finproservice.dto.IncomeCategoryDTO;
-import com.ufape.finproservice.dto.IncomeCategoryResponseDTO;
+import com.ufape.finproservice.dto.response.IncomeCategoryResponseDTO;
 import com.ufape.finproservice.service.IncomeCategoryService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

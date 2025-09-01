@@ -1,6 +1,6 @@
 package com.ufape.finproservice.mapper;
 
-import com.ufape.finproservice.dto.InvestorProfileResponseDTO;
+import com.ufape.finproservice.dto.response.InvestorProfileResponseDTO;
 import com.ufape.finproservice.model.InvestorProfile;
 
 public class InvestorProfileMapper {

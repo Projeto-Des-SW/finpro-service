@@ -1,10 +1,10 @@
 package com.ufape.finproservice.service;
 
 import com.ufape.finproservice.dto.InvestorProfileRequestDTO;
-import com.ufape.finproservice.dto.InvestorProfileResponseDTO;
+import com.ufape.finproservice.dto.response.InvestorProfileResponseDTO;
 import com.ufape.finproservice.dto.ProfileCalculationResultDTO;
 import com.ufape.finproservice.dto.QuestionAnswerDTO;
-import com.ufape.finproservice.dto.QuestionnaireResponseDTO;
+import com.ufape.finproservice.dto.response.QuestionnaireResponseDTO;
 import com.ufape.finproservice.enumeration.InvestmentTerm;
 import com.ufape.finproservice.enumeration.KnowledgeLevel;
 import com.ufape.finproservice.enumeration.RiskProfile;

@@ -1,9 +1,9 @@
 package com.ufape.finproservice.controller;
 
 import com.ufape.finproservice.dto.InvestorProfileRequestDTO;
-import com.ufape.finproservice.dto.InvestorProfileResponseDTO;
+import com.ufape.finproservice.dto.response.InvestorProfileResponseDTO;
 import com.ufape.finproservice.dto.ProfileCalculationResultDTO;
-import com.ufape.finproservice.dto.QuestionnaireResponseDTO;
+import com.ufape.finproservice.dto.response.QuestionnaireResponseDTO;
 import com.ufape.finproservice.service.InvestorProfileService;
 
 import lombok.AllArgsConstructor;
@@ -37,7 +37,7 @@ public class InvestorProfileController {
     
     @GetMapping
     public ResponseEntity<InvestorProfileResponseDTO> getProfile() {
-        InvestorProfileResponseDTO response = investorProfileService.getCurrentUserProfile();
+        InvestorProfileResponseDTO response = investorProfileService.getCurrentUserProfileDTO();
         return ResponseEntity.ok(response);
     }
     

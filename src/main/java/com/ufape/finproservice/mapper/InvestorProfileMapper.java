@@ -1,6 +1,6 @@
 package com.ufape.finproservice.mapper;
 
-import com.ufape.finproservice.dto.InvestorProfileResponseDTO;
+import com.ufape.finproservice.dto.response.InvestorProfileResponseDTO;
 import com.ufape.finproservice.model.InvestorProfile;
 
 public class InvestorProfileMapper {
@@ -13,7 +13,6 @@ public class InvestorProfileMapper {
             .riskTolerance(entity.getRiskTolerance())
             .investmentTerm(entity.getInvestmentTerm())
             .knowledgeLevel(entity.getKnowledgeLevel())
-            .createdAt(entity.getCreatedAt())
             .userId(entity.getUser().getId())
             .build();
     }

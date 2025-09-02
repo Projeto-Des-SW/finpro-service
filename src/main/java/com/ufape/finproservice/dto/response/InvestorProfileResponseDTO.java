@@ -1,4 +1,4 @@
-package com.ufape.finproservice.dto;
+package com.ufape.finproservice.dto.response;
 
 import java.time.LocalDateTime;
 
@@ -21,6 +21,5 @@ public class InvestorProfileResponseDTO {
     private RiskTolerance riskTolerance;
     private InvestmentTerm investmentTerm;
     private KnowledgeLevel knowledgeLevel;
-    private LocalDateTime createdAt;
     private Long userId;
 }

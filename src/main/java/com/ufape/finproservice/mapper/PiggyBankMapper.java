@@ -1,7 +1,7 @@
 package com.ufape.finproservice.mapper;
 
 import com.ufape.finproservice.dto.PiggyBankDTO;
-import com.ufape.finproservice.dto.PiggyBankResponseDTO;
+import com.ufape.finproservice.dto.response.PiggyBankResponseDTO;
 import com.ufape.finproservice.model.PiggyBank;
 import com.ufape.finproservice.model.UserEntity;
 

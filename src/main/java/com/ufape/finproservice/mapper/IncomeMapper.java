@@ -1,7 +1,7 @@
 package com.ufape.finproservice.mapper;
 
 import com.ufape.finproservice.dto.IncomeDTO;
-import com.ufape.finproservice.dto.IncomeResponseDTO;
+import com.ufape.finproservice.dto.response.IncomeResponseDTO;
 import com.ufape.finproservice.model.Income;
 import com.ufape.finproservice.model.IncomeCategory;
 import com.ufape.finproservice.model.UserEntity;

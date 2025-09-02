@@ -1,7 +1,7 @@
 package com.ufape.finproservice.controller;
 
 import com.ufape.finproservice.dto.ExpenseDTO;
-import com.ufape.finproservice.dto.ExpenseResponseDTO;
+import com.ufape.finproservice.dto.response.ExpenseResponseDTO;
 import com.ufape.finproservice.service.ExpenseService;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;

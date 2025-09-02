@@ -1,13 +1,15 @@
 package com.ufape.finproservice.service;
 
 import com.ufape.finproservice.dto.*;
+import com.ufape.finproservice.dto.response.PiggyBankDepositResponseDTO;
+import com.ufape.finproservice.dto.response.PiggyBankResponseDTO;
 import com.ufape.finproservice.enumeration.Status;
 import com.ufape.finproservice.exception.CustomException;
 import com.ufape.finproservice.exception.ExceptionMessage;
 import com.ufape.finproservice.mapper.PiggyBankMapper;
 import com.ufape.finproservice.model.PiggyBank;
 import com.ufape.finproservice.model.UserEntity;
-import com.ufape.finproservice.repository.PiggyBankRespository;
+import com.ufape.finproservice.repository.PiggyBankRepository;
 import com.ufape.finproservice.util.CurrentUserService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -24,7 +26,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class PiggyBankService {
 
-    private final PiggyBankRespository piggyBankRepository;
+    private final PiggyBankRepository piggyBankRepository;
     private final CurrentUserService currentUserService;
 
     @Transactional

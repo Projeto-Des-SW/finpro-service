@@ -1,10 +1,10 @@
 package com.ufape.finproservice.controller;
 
 import com.ufape.finproservice.dto.PiggyBankDepositDTO;
-import com.ufape.finproservice.dto.PiggyBankDepositResponseDTO;
+import com.ufape.finproservice.dto.response.PiggyBankDepositResponseDTO;
 import com.ufape.finproservice.dto.PiggyBankDTO;
 import com.ufape.finproservice.dto.PiggyBankProgressDTO;
-import com.ufape.finproservice.dto.PiggyBankResponseDTO;
+import com.ufape.finproservice.dto.response.PiggyBankResponseDTO;
 import com.ufape.finproservice.dto.PiggyBankSummaryDTO;
 import com.ufape.finproservice.service.PiggyBankService;
 

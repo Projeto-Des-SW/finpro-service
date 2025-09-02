@@ -1,7 +1,7 @@
 package com.ufape.finproservice.mapper;
 
 import com.ufape.finproservice.dto.UserDTO;
-import com.ufape.finproservice.dto.UserResponseDTO;
+import com.ufape.finproservice.dto.response.UserResponseDTO;
 import com.ufape.finproservice.model.UserEntity;
 
 public class UserMapper {

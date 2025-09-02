@@ -1,7 +1,7 @@
 package com.ufape.finproservice.service;
 
 import com.ufape.finproservice.dto.LoginDTO;
-import com.ufape.finproservice.dto.LoginResponseDTO;
+import com.ufape.finproservice.dto.response.LoginResponseDTO;
 import com.ufape.finproservice.dto.UserDTO;
 import com.ufape.finproservice.exception.CustomException;
 import com.ufape.finproservice.exception.ExceptionMessage;
@@ -12,6 +12,8 @@ import com.ufape.finproservice.security.JwtUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -40,5 +42,9 @@ public class UserService {
 
         String token = jwtUtil.generateToken(user.getEmail(), user.getRole().name());
         return new LoginResponseDTO(token, UserMapper.toUserResponseDTO(user));
+    }
+
+    public Optional<UserEntity> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

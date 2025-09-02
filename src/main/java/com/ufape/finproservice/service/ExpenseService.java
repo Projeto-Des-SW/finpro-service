@@ -1,7 +1,7 @@
 package com.ufape.finproservice.service;
 
 import com.ufape.finproservice.dto.ExpenseDTO;
-import com.ufape.finproservice.dto.ExpenseResponseDTO;
+import com.ufape.finproservice.dto.response.ExpenseResponseDTO;
 import com.ufape.finproservice.exception.CustomException;
 import com.ufape.finproservice.exception.ExceptionMessage;
 import com.ufape.finproservice.mapper.ExpenseMapper;

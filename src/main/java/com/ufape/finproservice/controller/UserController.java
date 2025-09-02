@@ -1,7 +1,7 @@
 package com.ufape.finproservice.controller;
 
 import com.ufape.finproservice.dto.LoginDTO;
-import com.ufape.finproservice.dto.LoginResponseDTO;
+import com.ufape.finproservice.dto.response.LoginResponseDTO;
 import com.ufape.finproservice.dto.UserDTO;
 import com.ufape.finproservice.model.UserEntity;
 import com.ufape.finproservice.service.UserService;

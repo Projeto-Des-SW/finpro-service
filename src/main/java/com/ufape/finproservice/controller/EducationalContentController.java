@@ -1,7 +1,7 @@
 package com.ufape.finproservice.controller;
 
 import com.ufape.finproservice.dto.EducationalContentDTO;
-import com.ufape.finproservice.dto.EducationalContentResponseDTO;
+import com.ufape.finproservice.dto.response.EducationalContentResponseDTO;
 import com.ufape.finproservice.service.EducationalContentService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

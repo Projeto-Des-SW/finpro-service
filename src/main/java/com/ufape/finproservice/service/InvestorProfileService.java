@@ -1,10 +1,10 @@
 package com.ufape.finproservice.service;
 
 import com.ufape.finproservice.dto.InvestorProfileRequestDTO;
-import com.ufape.finproservice.dto.InvestorProfileResponseDTO;
+import com.ufape.finproservice.dto.response.InvestorProfileResponseDTO;
 import com.ufape.finproservice.dto.ProfileCalculationResultDTO;
 import com.ufape.finproservice.dto.QuestionAnswerDTO;
-import com.ufape.finproservice.dto.QuestionnaireResponseDTO;
+import com.ufape.finproservice.dto.response.QuestionnaireResponseDTO;
 import com.ufape.finproservice.enumeration.InvestmentTerm;
 import com.ufape.finproservice.enumeration.KnowledgeLevel;
 import com.ufape.finproservice.enumeration.RiskProfile;
@@ -18,7 +18,6 @@ import com.ufape.finproservice.repository.InvestorProfileRepository;
 import com.ufape.finproservice.util.CurrentUserService;
 import lombok.AllArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,11 +42,14 @@ public class InvestorProfileService {
             .build();
     }
 
-    public InvestorProfileResponseDTO getCurrentUserProfile() {
+    public InvestorProfileResponseDTO getCurrentUserProfileDTO() {
+        return InvestorProfileMapper.toResponseDTO(getCurrentUserProfile());
+    }
+
+    public InvestorProfile getCurrentUserProfile() {
         UserEntity user = currentUserService.getCurrentUser();
-        InvestorProfile profile = repository.findByUserId(user.getId())
-            .orElseThrow(() -> new CustomException(ExceptionMessage.INVESTOR_PROFILE_NOT_FOUND));
-        return InvestorProfileMapper.toResponseDTO(profile);
+        return repository.findByUserId(user.getId())
+                .orElseThrow(() -> new CustomException(ExceptionMessage.INVESTOR_PROFILE_NOT_FOUND));
     }
 
     public InvestorProfileResponseDTO saveProfile(InvestorProfileRequestDTO requestDTO) {
@@ -69,7 +71,6 @@ public class InvestorProfileService {
             profile.setRiskTolerance(riskTolerance);
             profile.setInvestmentTerm(investmentTerm);
             profile.setKnowledgeLevel(knowledgeLevel);
-            profile.setCreatedAt(LocalDateTime.now());
         } else {
             profile = InvestorProfile.builder()
                 .riskProfile(riskProfile)
@@ -77,7 +78,6 @@ public class InvestorProfileService {
                 .riskTolerance(riskTolerance)
                 .investmentTerm(investmentTerm)
                 .knowledgeLevel(knowledgeLevel)
-                .createdAt(LocalDateTime.now())
                 .user(user)
                 .build();
         }

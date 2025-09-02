@@ -1,7 +1,7 @@
 package com.ufape.finproservice.service;
 
 import com.ufape.finproservice.dto.EducationalContentDTO;
-import com.ufape.finproservice.dto.EducationalContentResponseDTO;
+import com.ufape.finproservice.dto.response.EducationalContentResponseDTO;
 import com.ufape.finproservice.exception.CustomException;
 import com.ufape.finproservice.exception.ExceptionMessage;
 import com.ufape.finproservice.mapper.EducationalContentMapper;

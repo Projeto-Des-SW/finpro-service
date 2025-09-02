@@ -1,5 +1,6 @@
 package com.ufape.finproservice.dto;
 
+import com.ufape.finproservice.dto.response.PiggyBankResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

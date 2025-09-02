@@ -42,11 +42,14 @@ public class InvestorProfileService {
             .build();
     }
 
-    public InvestorProfileResponseDTO getCurrentUserProfile() {
+    public InvestorProfileResponseDTO getCurrentUserProfileDTO() {
+        return InvestorProfileMapper.toResponseDTO(getCurrentUserProfile());
+    }
+
+    public InvestorProfile getCurrentUserProfile() {
         UserEntity user = currentUserService.getCurrentUser();
-        InvestorProfile profile = repository.findByUserId(user.getId())
-            .orElseThrow(() -> new CustomException(ExceptionMessage.INVESTOR_PROFILE_NOT_FOUND));
-        return InvestorProfileMapper.toResponseDTO(profile);
+        return repository.findByUserId(user.getId())
+                .orElseThrow(() -> new CustomException(ExceptionMessage.INVESTOR_PROFILE_NOT_FOUND));
     }
 
     public InvestorProfileResponseDTO saveProfile(InvestorProfileRequestDTO requestDTO) {

@@ -37,7 +37,7 @@ public class InvestorProfileController {
     
     @GetMapping
     public ResponseEntity<InvestorProfileResponseDTO> getProfile() {
-        InvestorProfileResponseDTO response = investorProfileService.getCurrentUserProfile();
+        InvestorProfileResponseDTO response = investorProfileService.getCurrentUserProfileDTO();
         return ResponseEntity.ok(response);
     }
     

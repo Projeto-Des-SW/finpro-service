@@ -1,20 +1,26 @@
 package com.ufape.finproservice.controller;
 
+import com.ufape.finproservice.dto.InvestmentRecommendationDTO;
 import com.ufape.finproservice.dto.InvestmentSimulationDTO;
 import com.ufape.finproservice.dto.response.InvestmentSimulationResponseDTO;
-import com.ufape.finproservice.service.InvestmentSimulationService;
+import com.ufape.finproservice.service.InvestmentService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/investment")
 @AllArgsConstructor
-public class InvestmentSimulationController {
+public class InvestmentController {
 
-    private final InvestmentSimulationService simulationService;
+    private final InvestmentService investmentService;
 
     @PostMapping("/simulate")
     public InvestmentSimulationResponseDTO simulate(@RequestBody InvestmentSimulationDTO dto) {
-        return simulationService.simulate(dto);
+        return investmentService.simulate(dto);
+    }
+
+    @GetMapping("/recommendation")
+    public InvestmentRecommendationDTO recommend() {
+        return investmentService.recommend();
     }
 }

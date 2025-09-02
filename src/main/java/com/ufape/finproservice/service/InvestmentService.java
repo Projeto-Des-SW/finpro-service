@@ -1,16 +1,23 @@
 package com.ufape.finproservice.service;
 
+import com.ufape.finproservice.dto.InvestmentRecommendationDTO;
 import com.ufape.finproservice.dto.InvestmentSimulationDTO;
 import com.ufape.finproservice.dto.response.InvestmentSimulationResponseDTO;
+import com.ufape.finproservice.enumeration.RiskProfile;
+import com.ufape.finproservice.model.InvestorProfile;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
-public class InvestmentSimulationService {
+@AllArgsConstructor
+public class InvestmentService {
 
     private static final String TAXA_API_URL = "https://brasilapi.com.br/api/taxas/v1";
+    private final InvestorProfileService investorProfileService;
 
     public InvestmentSimulationResponseDTO simulate(InvestmentSimulationDTO dto) {
         RestTemplate restTemplate = new RestTemplate();
@@ -52,5 +59,40 @@ public class InvestmentSimulationService {
 
     private double round(double value) {
         return Math.round(value * 100.0) / 100.0;
+    }
+
+    public InvestmentRecommendationDTO recommend() {
+        InvestorProfile profile = investorProfileService.getCurrentUserProfile();
+        RiskProfile risk = profile.getRiskProfile();
+        return InvestmentRecommendationDTO.builder()
+                .riskProfile(risk)
+                .recommendations(getRecommendationsByRisk(risk))
+                .build();
+    }
+
+    private List<String> getRecommendationsByRisk(RiskProfile riskProfile) {
+        return switch (riskProfile) {
+            case CONSERVATIVE -> List.of(
+                    "Tesouro Selic",
+                    "CDB - liquidez diária",
+                    "LCI/LCA",
+                    "Fundos DI",
+                    "Poupança (último recurso)"
+            );
+            case MODERATE -> List.of(
+                    "Tesouro IPCA+",
+                    "CDBs de bancos médios",
+                    "Fundos Multimercado",
+                    "Fundos Imobiliários",
+                    "ETFs"
+            );
+            case AGGRESSIVE -> List.of(
+                    "Ações individuais (ex: PETR4, VALE3)",
+                    "ETFs internacionais (ex: NASD11, HASH11)",
+                    "Criptomoedas",
+                    "Debêntures, CRIs, CRAs",
+                    "Investimentos alternativos (startups)"
+            );
+        };
     }
 }

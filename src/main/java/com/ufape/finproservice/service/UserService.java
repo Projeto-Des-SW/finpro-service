@@ -13,6 +13,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -40,5 +42,9 @@ public class UserService {
 
         String token = jwtUtil.generateToken(user.getEmail(), user.getRole().name());
         return new LoginResponseDTO(token, UserMapper.toUserResponseDTO(user));
+    }
+
+    public Optional<UserEntity> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

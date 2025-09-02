@@ -1,7 +1,5 @@
 package com.ufape.finproservice.model;
 
-import java.time.LocalDateTime;
-
 import com.ufape.finproservice.enumeration.InvestmentTerm;
 import com.ufape.finproservice.enumeration.KnowledgeLevel;
 import com.ufape.finproservice.enumeration.RiskProfile;
@@ -34,8 +32,6 @@ public class InvestorProfile {
 
     @Enumerated(EnumType.STRING)
     private KnowledgeLevel knowledgeLevel;
-    
-    private LocalDateTime createdAt;
     
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)

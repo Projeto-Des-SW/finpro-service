@@ -13,7 +13,6 @@ public class InvestorProfileMapper {
             .riskTolerance(entity.getRiskTolerance())
             .investmentTerm(entity.getInvestmentTerm())
             .knowledgeLevel(entity.getKnowledgeLevel())
-            .createdAt(entity.getCreatedAt())
             .userId(entity.getUser().getId())
             .build();
     }

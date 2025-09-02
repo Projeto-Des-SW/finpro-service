@@ -21,6 +21,5 @@ public class InvestorProfileResponseDTO {
     private RiskTolerance riskTolerance;
     private InvestmentTerm investmentTerm;
     private KnowledgeLevel knowledgeLevel;
-    private LocalDateTime createdAt;
     private Long userId;
 }

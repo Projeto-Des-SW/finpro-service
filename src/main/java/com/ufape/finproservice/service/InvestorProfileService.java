@@ -18,7 +18,6 @@ import com.ufape.finproservice.repository.InvestorProfileRepository;
 import com.ufape.finproservice.util.CurrentUserService;
 import lombok.AllArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,7 +68,6 @@ public class InvestorProfileService {
             profile.setRiskTolerance(riskTolerance);
             profile.setInvestmentTerm(investmentTerm);
             profile.setKnowledgeLevel(knowledgeLevel);
-            profile.setCreatedAt(LocalDateTime.now());
         } else {
             profile = InvestorProfile.builder()
                 .riskProfile(riskProfile)
@@ -77,7 +75,6 @@ public class InvestorProfileService {
                 .riskTolerance(riskTolerance)
                 .investmentTerm(investmentTerm)
                 .knowledgeLevel(knowledgeLevel)
-                .createdAt(LocalDateTime.now())
                 .user(user)
                 .build();
         }

@@ -33,6 +33,10 @@ public class PiggyBankService {
     public PiggyBankResponseDTO createPiggyBank(PiggyBankDTO piggyBankDTO) {
         UserEntity user = currentUserService.getCurrentUser();
 
+        if (piggyBankDTO.getTargetDate().isBefore(LocalDate.now())) {
+            throw new CustomException(ExceptionMessage.INVALID_DATE);
+        }
+
         if (piggyBankRepository.existsByNameAndUserId(piggyBankDTO.getName(), user.getId())) {
             throw new CustomException(ExceptionMessage.PIGGY_BANK_ALREADY_EXISTS);
         }
@@ -69,6 +73,10 @@ public class PiggyBankService {
         UserEntity user = currentUserService.getCurrentUser();
         PiggyBank existingPiggyBank = piggyBankRepository.findByPiggyBankIdAndUserId(id, user.getId())
                 .orElseThrow(() -> new CustomException(ExceptionMessage.PIGGY_BANK_NOT_FOUND));
+
+        if (piggyBankDTO.getTargetDate().isBefore(LocalDate.now())) {
+            throw new CustomException(ExceptionMessage.INVALID_DATE);
+        }
 
         if (!existingPiggyBank.getName().equals(piggyBankDTO.getName()) &&
                 piggyBankRepository.existsByNameAndUserId(piggyBankDTO.getName(), user.getId())) {

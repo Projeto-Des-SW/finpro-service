@@ -35,7 +35,7 @@ public class InvestorProfileController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
     
-    @GetMapping
+    @GetMapping("/current")
     public ResponseEntity<InvestorProfileResponseDTO> getProfile() {
         InvestorProfileResponseDTO response = investorProfileService.getCurrentUserProfileDTO();
         return ResponseEntity.ok(response);

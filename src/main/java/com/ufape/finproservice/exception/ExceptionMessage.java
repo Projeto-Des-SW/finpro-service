@@ -25,6 +25,8 @@ public enum ExceptionMessage {
 
     INVALID_AMOUNT(400, "Invalid amount"),
 
+    INVALID_DATE(400, "The informed date must be equal to or less than the current date"),
+
     CONTENT_NOT_FOUND(404, "Content not found"),
     INVESTOR_PROFILE_NOT_FOUND(404, "Investor profile not found");
 

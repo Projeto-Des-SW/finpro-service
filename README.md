@@ -115,7 +115,8 @@ O sistema utiliza PostgreSQL com as seguintes entidades principais:
 
 ## 📎 Links Relacionados
 
-🎨 [Frontend do FinPro (Angular)](https://github.com/Projeto-Des-SW/finpro-front)
+🎨 [Frontend do FinPro (Angular)](https://github.com/Projeto-Des-SW/finpro-front)  
+🎥 [Pitch](https://www.youtube.com/watch?v=b6vzSrNGmP)
 
 ## 👨‍🏫 Professor Responsável
 

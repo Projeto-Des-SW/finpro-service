@@ -97,6 +97,10 @@ A documentação interativa está disponível através do Swagger:
 
 **http://localhost:8080/swagger-ui/index.html**
 
+## 🌐 Hospedagem
+
+A API também está disponível online, hospedada em **[URL da aplicação](https://finpro-frontend-191642919864.southamerica-east1.run.app/register)**. 
+
 ## 🛡️ Segurança
 
 - **JWT Authentication** - Tokens seguros para autenticação

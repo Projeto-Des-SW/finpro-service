@@ -99,7 +99,7 @@ A documentação interativa está disponível através do Swagger:
 
 ## 🌐 Hospedagem
 
-A API também está disponível online, hospedada em **[URL da aplicação](https://finpro-frontend-191642919864.southamerica-east1.run.app/register)**. 
+A API também está disponível online, hospedada em **[FinPro](https://finpro-frontend-191642919864.southamerica-east1.run.app/register)**. 
 
 ## 🛡️ Segurança
 
